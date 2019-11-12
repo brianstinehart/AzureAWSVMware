@@ -1,4 +1,4 @@
-![ansible](docs/images/Ansible_logo.svg.png)![interactive](docs/images/InteractiveLogo.jpg)
+![ansible](docs/images/Ansible_logo_svg.png)![interactive](docs/images/InteractiveLogo.jpg)
 
 # Ansible VMware Deployment
 
