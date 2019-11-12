@@ -1,5 +1,9 @@
 ![ansible](docs/images/Ansible_logo.svg.png)![interactive](docs/images/InteractiveLogo.jpg)
 
+<p align="center">
+  <img width="460" height="300" src="https://www.interactive.com.au/wp-content/themes/true-theme/resources/assets/images/brand/share-1280-by-640.jpg">
+</p>
+
 # Ansible VMware Deployment
 
 These ansible playbooks provision VMs on VMware focused on Linux.  This provisions the following:
