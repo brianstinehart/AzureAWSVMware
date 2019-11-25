@@ -1,0 +1,14 @@
+{
+    "eula_accepted": true,
+   "eula_accepted": true,
+    "company_name": "Red Hat",
+    "contact_email": "bstineha@redhat.com",
+    "contact_name": "Brian Stinehart",
+    "hostname": "df4c25518c864278807644bd66099c95",
+    "instance_count": 50,
+    "license_date": 1580355126,
+    "license_key": "7a9f51a5ea8eea6e76bbbfa54a5e20dcc782ab95823e37ae5b601069d13e923f",
+    "license_type": "enterprise",
+    "subscription_name": "Ansible Tower by Red Hat (50 Managed Nodes), RHT Internal",
+    "trial": true
+}

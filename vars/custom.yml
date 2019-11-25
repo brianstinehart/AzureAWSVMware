@@ -4,7 +4,7 @@
 ##########################################################
 
 # Where to provision instances (ec2, azure, vmware)
-instance_loc: ec2
+instance_loc: azure
 name_prefix: "skylight"
 
 # Needed for AD and windows client provision
@@ -30,7 +30,7 @@ ldap_access_filter: "(&(objectClass=user)(memberOf=CN=Ansible Users,CN=Users,{{ 
 tower_ldap_search_dn: "CN=Users,{{ ldap_search_base }}"
 
 # Root user (ec2-user for AWS)
-root_user: ec2-user
+root_user: root
 root_password: MyPassw0rd21
 centos_root_user: centos
 
@@ -177,14 +177,14 @@ ovirt_windows_template: "{{ ovirt_clone_source_windows }}"
 ####################### AZURE INFO #######################
 ##########################################################
 
-azure_admin_user: "skylight"
-azure_admin_pass: "MyS3cr3tP@ssw0rd"
+azure_admin_user: "brian.stinehart22@gmail.com"
+azure_admin_pass: "IlovetheBuckeyes22!"
 
-azure_client_id: ''
-azure_secret: ''
-azure_subscription_id: ''
-azure_tenant: ''
-azure_location: ''
+azure_client_id: 'b24cee71-4beb-4709-b5ef-d8e1b8a7b0c9'
+azure_secret: '8a583fe7-8692-4019-a9f9-47ea00e2a332'
+azure_subscription_id: 'c12a14d4-eb57-4d79-8322-b0e933053cd6'
+azure_tenant: '41101d19-61a7-4971-a3ce-6a1a5f5dd8e8'
+azure_location: 'australiasoutheast'
 
 azure_storage_account_type: Standard_LRS
 
