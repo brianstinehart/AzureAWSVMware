@@ -178,7 +178,7 @@
       data: 1
       type: dword
 
-  - name: 
+  - name: Disable Administrator account
     win_user:
       name: Administrator
       password: Ans1bl3--
@@ -187,7 +187,7 @@
       groups:
         - Administrators
 
-  - name: 
+  - name: Create user account and add to Admin group
     win_user:
       name: Nici
       password: Ans1bl3--
