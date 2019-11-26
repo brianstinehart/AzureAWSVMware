@@ -83,10 +83,15 @@
 #       chdir: C:\Users\{{ user }}\Documents
 #       creates: C:\Users\{{ user }}\Documents\{{ user }}
 
+  - name: Create directory
+    win_file:
+      path: C:\Users\{{ user }}\Documents\Interactive
+      state: directory
+
   - name: Create Readme file
     win_copy:
       dest: C:\Users\{{ user }}\Documents\{{ user }}\README.md
-      content: ""
+      content: "Thanks for getting this session organised, Nici"
     register: initialize
 
 #   - name: Add initial file
