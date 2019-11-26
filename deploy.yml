@@ -27,6 +27,7 @@
 
 - name: Configure Docs Host
   hosts: docs
+  remote_user: bstineha
   become: True
   gather_facts: True
   vars_files:
