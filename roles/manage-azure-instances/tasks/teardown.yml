@@ -105,7 +105,7 @@
   register: instances
   until: instances.finished
   retries: 600
-  with_items: "{{ tower_jobs.results + gitlab_jobs.results + docs_jobs.results + windows1_jobs.results + workstation_jobs.results}}"
+  with_items: "{{ docs_jobs.results + windows1_jobs.results }}"
   ignore_errors: yes
 
 ################### Remove Network Interfaces ###################
