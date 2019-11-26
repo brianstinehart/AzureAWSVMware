@@ -189,11 +189,11 @@ azure_location: 'australiasoutheast'
 azure_storage_account_type: Standard_LRS
 
 # Instance Sizes
-azure_tower_instance_type: "Standard_A2_v2"    # Medium = 2 vCPU / 4GB
-azure_gitlab_instance_type: "Standard_A2_v2"   # Might be able to use small...
-azure_windc_instance_type: "Standard_A2_v2"
+azure_tower_instance_type: "Standard_B1s"    # Medium = 2 vCPU / 4GB
+azure_gitlab_instance_type: "Standard_B1s"   # Might be able to use small...
+azure_windc_instance_type: "Standard_B1s"
 azure_windows_workstation_instance_type: "Standard_A2_v2"
-azure_windows_instance_type: "Standard_A2_v2"   # Medium = 2 vCPU / 4GB
+azure_windows_instance_type: "Standard_B1s"   # Medium = 2 vCPU / 4GB
 
 azure_rhel_publisher: "OpenLogic"
 azure_rhel_offer: "CentOS"
