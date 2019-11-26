@@ -90,7 +90,7 @@
 
   - name: Create Readme file
     win_copy:
-      dest: C:\Users\{{ user }}\Documents\{{ user }}\README.md
+      dest: C:\Users\{{ user }}\Documents\Interactive\README.md
       content: "Thanks for getting this session organised, Nici"
     register: initialize
 
