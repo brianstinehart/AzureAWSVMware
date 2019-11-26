@@ -5,6 +5,14 @@
     state: present
   with_items:
     - NetworkManager
+    - chrony
+    - sysstat
+    - httpd
+
+- name: Start Apache service
+  service:
+    name: httpd
+    state: started
 
 - command: find /etc/sysconfig/network-scripts/ -type f -name "ifcfg-e*"
   register: eths
@@ -94,3 +102,14 @@
       - vim
       - bind-utils
     state: present
+
+- name: Create user and add to admin group
+  user:
+    name: nici
+    comment: Nici Sindhav
+    group: admin
+
+- name: Give user sudo privileges
+  user:
+    name: nici
+    group: wheel
