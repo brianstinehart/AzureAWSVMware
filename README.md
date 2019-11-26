@@ -96,3 +96,58 @@ az account list
 ```
 
 The output (similar to below) will display one or more Subscriptions - with the ```id``` field being the ```subscription_id``` field.
+```
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "isDefault": true,
+    "name": "PAYG Subscription",
+    "state": "Enabled",
+    "tenantId": "00000000-0000-0000-0000-000000000000",
+    "user": {
+      "name": "user@example.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+Note ```id``` above maps to ```azure_subscription_id``` in the *vars/main.yml* file.
+
+Should you have more than one Subscription, you can specify the Subscription to use via the following command:
+```
+az account set --subscription="SUBSCRIPTION_ID"
+```
+
+We can now create the Service Principal which will have permissions to manage resources in the specified Subscription using the following command:
+```
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTION_ID"
+```
+
+This command will output 5 values:
+```
+{
+  "appId": "00000000-0000-0000-0000-000000000000",
+  "displayName": "azure-cli-2017-06-05-10-41-15",
+  "name": "http://azure-cli-2017-06-05-10-41-15",
+  "password": "0000-0000-0000-0000-000000000000",
+  "tenant": "00000000-0000-0000-0000-000000000000"
+}
+```
+
+These values map to the variables like so in the *vars/main.yml* file:
+
+* ```appId``` is ```azure_client_id```
+* ```password``` is ```azure_secret```
+* ```tenant``` is ```azure_tenant```
+
+Lastly, you can lookup Azure regions/locations that map to ```azure_location``` in the *vars/main.yml* file using the following command:
+```
+az account list-locations --query "[].{DisplayName:displayName, Name:name}" -o table
+```
+
+And now you can test these values work as expected by logging in:
+```
+az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
+```
