@@ -1,20 +1,4 @@
 ---
-- name: Add domain controller private IP as DNS server
-  win_dns_client:
-    adapter_names: "*"
-    ipv4_addresses: "{{ hostvars['windc']['private_ip'] }}"
-
-- name: Join Domain
-  win_domain_membership:
-    dns_domain_name: "{{ dns_domain_name }}"
-    domain_admin_user: "admin@{{ dns_domain_name }}"
-    domain_admin_password: "{{ domain_admin_password }}"
-    state: domain
-  register: windomain
-
-- name: Reboot if needed
-  win_reboot:
-  when: windomain.reboot_required
 
 - name: Set DNS search string to {{ dns_domain_name }}
   win_dns_searchsuffix:
@@ -34,3 +18,27 @@
     members:
       - "{{ dns_domain_name_short }}\\Ansible Users"
     state: present
+
+- name: install Chocolatey
+  win_chocolatey:
+    name: chocolatey
+    state: present
+
+- name: disable enhanced exit codes
+  win_chocolatey_feature:
+    name: useEnhancedExitCodes
+    state: disabled
+  when: ansible_version.full is version_compare('2.8', '<')
+
+- name: Install Visual Studio Code, Git, and Putty
+  win_chocolatey:
+    name: "{{ item }}"
+    ignore_checksums: true
+  with_items:
+    - visualstudiocode
+    - git
+    - googlechrome
+  register: chocolatey_packages_install
+  until: chocolatey_packages_install is success
+  delay: 3
+  retries: 5
