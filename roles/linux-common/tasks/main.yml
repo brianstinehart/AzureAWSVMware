@@ -25,21 +25,21 @@
   with_items: "{{ eths.stdout_lines }}"
   register: ifcfg
 
-- name: set DNS resolution in resolv.conf file
-  template:
-    src: templates/resolv.conf.j2
-    dest: /etc/resolv.conf
-  register: etchost
+# - name: set DNS resolution in resolv.conf file
+#   template:
+#     src: templates/resolv.conf.j2
+#     dest: /etc/resolv.conf
+#   register: etchost
 
-- name: set DNS resolution in ifcfg file
-  blockinfile:
-    dest: "{{ item }}"
-    block: |
-      DNS1={{ dns_server }}
-      DOMAIN="{{ dns_domain_name }} ec2.internal"
-      PEERDNS=no
-  register: dnschange
-  with_items: "{{ eths.stdout_lines }}"
+# - name: set DNS resolution in ifcfg file
+#   blockinfile:
+#     dest: "{{ item }}"
+#     block: |
+#       DNS1={{ dns_server }}
+#       DOMAIN="{{ dns_domain_name }} ec2.internal"
+#       PEERDNS=no
+#   register: dnschange
+#   with_items: "{{ eths.stdout_lines }}"
 
 - name: create dhclient.conf
   file:

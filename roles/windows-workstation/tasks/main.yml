@@ -97,7 +97,7 @@
   - name: Update hosts file
     win_lineinfile:
       path: C:\Windows\System32\Drivers\etc\hosts
-      line: 8.8.8.8         interactive.microsoft.com   #Azure DNS
+      line: 8.8.8.8         interactive.microsoft.com   "#Azure DNS"
 
   - name: Change power plan to high performance
     win_power_plan:
