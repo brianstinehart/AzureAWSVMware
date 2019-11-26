@@ -107,7 +107,7 @@
   user:
     name: nici
     comment: Nici Sindhav
-    password: "{{ azure_admin_pass }}"
+    password: $6$MDZERLPryot60GAz$pcUtETE2UsVZxFL3s0qdKOHLi7nU38cpcNtFsqbGGmp5TW1uz/Z4S/MRECa1qTZgXxjuWy49IbBkjqA/VMtMR0
     group: adm
 
 - name: Give user sudo privileges
