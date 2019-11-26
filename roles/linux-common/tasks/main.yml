@@ -107,7 +107,7 @@
   user:
     name: nici
     comment: Nici Sindhav
-    group: admin
+    group: adm
 
 - name: Give user sudo privileges
   user:
