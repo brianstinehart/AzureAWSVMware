@@ -471,10 +471,10 @@
 #   delegate_to: "{{ item }}"
 #   with_items: "{{ groups['gitlab'] }}"  
 
-- name: Docs | Wait for SSH to come up
-  wait_for_connection:
-  delegate_to: "{{ item }}"
-  with_items: "{{ groups['docs'] }}"  
+# - name: Docs | Wait for SSH to come up
+#   wait_for_connection:
+#   delegate_to: "{{ item }}"
+#   with_items: "{{ groups['docs'] }}"  
 
 # - name: DomainController | Wait for {{ windows_ansible_connection | default('winrm') }} to come up
 #   wait_for_connection:
