@@ -181,7 +181,7 @@
   - name: 
     win_user:
       name: Administrator
-      password: ansible
+      password: Ans1bl3--
       state: present
       account_disabled: yes
       groups:
@@ -190,7 +190,7 @@
   - name: 
     win_user:
       name: Nici
-      password: ansible
+      password: Ans1bl3--
       state: present
       groups:
         - Administrators
