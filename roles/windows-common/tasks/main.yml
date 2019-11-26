@@ -1,5 +1,4 @@
 ---
-
 - name: Set DNS search string to {{ dns_domain_name }}
   win_dns_searchsuffix:
     suffixes:
