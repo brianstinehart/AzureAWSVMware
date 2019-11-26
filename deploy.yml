@@ -16,7 +16,6 @@
 
 - name: Configure Windows Servers
   hosts: windows
-  remote_user: bstineha
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
@@ -27,7 +26,6 @@
 
 - name: Configure Docs Host
   hosts: docs
-  remote_user: bstineha
   become: True
   gather_facts: True
   vars_files:
