@@ -91,7 +91,7 @@
   - name: Create Readme file
     win_copy:
       dest: C:\Users\{{ user }}\Documents\Interactive\README.md
-      content: "Thanks for getting this session organised, Nici"
+      content: "Thanks for getting this session organised, Nici!"
     register: initialize
 
   - name: Update hosts file
