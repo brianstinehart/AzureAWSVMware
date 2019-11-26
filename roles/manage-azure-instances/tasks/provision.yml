@@ -92,7 +92,7 @@
     name: "{{ name_prefix + '-s' + item + '-w1'}}"
     vm_size: "{{ azure_windows_instance_type }}"
     managed_disk_type: "{{ azure_storage_account_type }}"
-    admin_username: "{{ azure_admin_user }}"
+    admin_username: "bstineha"
     admin_password: "{{ azure_admin_pass }}"
     started: True
     os_type: Windows
@@ -246,7 +246,7 @@
     name: "{{ name_prefix + '-docs'}}"
     vm_size: "{{ azure_gitlab_instance_type }}"
     managed_disk_type: "{{ azure_storage_account_type }}"
-    admin_username: "{{ azure_admin_user }}"
+    admin_username: "bstineha"
     admin_password: "{{ azure_admin_pass }}"
     started: True
     state: present
