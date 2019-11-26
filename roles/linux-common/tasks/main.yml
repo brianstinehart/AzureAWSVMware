@@ -53,7 +53,7 @@
   blockinfile:
     dest: /etc/dhcp/dhclient.conf
     block: |
-      prepend domain-name-servers {{ hostvars['windc']['private_ip'] }};
+      prepend domain-name-servers 8.8.8.8;
       prepend domain-search "{{ dns_domain_name }}", "ec2.internal";
     state: present
   register: dnschange
