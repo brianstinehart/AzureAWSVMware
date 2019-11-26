@@ -16,7 +16,7 @@
 
 - name: Configure Windows Servers
   hosts: windows
-  remote_user: bstineha
+  ansible_user: bstineha
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
