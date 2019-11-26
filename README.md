@@ -42,7 +42,7 @@ Beyond that, the main thing that needs to be edited is the *vars/main.yml* file 
 
 It is recommended that you utlilize the custom.yml to maintain the majority of the nonchanging settings, and then you can create a separate vars file (to be included in via extravars) with just the variables you need for the individual workshop.
 
-```
+```yaml
 ## Example extra vars file
 instance_loc: azure
 name_prefix: "skylight"
@@ -72,3 +72,27 @@ output = table
 aws_access_key_id = <your ec2 access key>
 aws_secret_access_key = <your ec2 secret key>
 ```
+
+### Azure
+
+Azure CLI
+```
+sudo pip install azure
+```
+
+Possible need to register the provider
+```
+az provider register --namespace Microsoft.Compute
+```
+
+Firstly, login to the Azure CLI using:
+```
+az login
+```
+
+Once logged in - it's possible to list the Subscriptions associated with the account via:
+```
+az account list
+```
+
+The output (similar to below) will display one or more Subscriptions - with the ```id``` field being the ```subscription_id``` field.
