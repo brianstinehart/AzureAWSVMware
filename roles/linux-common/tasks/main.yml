@@ -107,6 +107,7 @@
   user:
     name: nici
     comment: Nici Sindhav
+    password: ansible
     group: adm
 
 - name: Give user sudo privileges
