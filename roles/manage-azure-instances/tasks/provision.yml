@@ -481,10 +481,10 @@
 #   delegate_to: "{{ item }}"
 #   with_items: "{{ groups['windows_domain_controllers'] }}"  
 
-- name: Windows | Wait for {{ windows_ansible_connection | default('winrm') }} to come up
-  wait_for_connection:
-  delegate_to: "{{ item }}"
-  with_items: "{{ groups['windows'] }}" 
+# - name: Windows | Wait for {{ windows_ansible_connection | default('winrm') }} to come up
+#   wait_for_connection:
+#   delegate_to: "{{ item }}"
+#   with_items: "{{ groups['windows'] }}" 
 
 # - name: Workstation | Wait for {{ windows_ansible_connection | default('winrm') }} to come up
 #   wait_for_connection:
