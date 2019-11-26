@@ -24,13 +24,13 @@
   roles:
     - windows-workstation
 
-- name: Configure Docs Host
-  hosts: docs
-  become: True
-  gather_facts: True
-  vars_files:
-    - [ 'vars/custom.yml', 'vars/main.yml' ]
-  tags:
-    - docs
-  roles:
-    - linux-common
+# - name: Configure Docs Host
+#   hosts: docs
+#   become: True
+#   gather_facts: True
+#   vars_files:
+#     - [ 'vars/custom.yml', 'vars/main.yml' ]
+#   tags:
+#     - docs
+#   roles:
+#     - linux-common

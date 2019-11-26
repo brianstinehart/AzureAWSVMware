@@ -94,6 +94,22 @@
       content: "Thanks for getting this session organised, Nici"
     register: initialize
 
+  - name: Update hosts file
+    win_lineinfile:
+      path: C:\Windows\System32\Drivers\etc\hosts
+      line: 8.8.8.8         interactive.microsoft.com
+
+  - name: Change power plan to high performance
+    win_power_plan:
+      name: high performance
+
+  - name: Disable firewall for Public and Private profiles
+    win_firewall:
+      state: disabled
+      profiles:
+      - Private
+      - Public
+
 #   - name: Add initial file
 #     win_command: git add C:\Users\{{ user }}\Documents\{{ user }}\README.md
 #     args:
@@ -122,14 +138,14 @@
 #       src: files/settings.json
 #       dest: C:\Users\{{ user }}\AppData\Roaming\Code\User\settings.json
 
-  - name: Set Chrome to default Browser
-    win_regedit:
-      path: HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\{{ item }}\UserChoice
-      name: ProgId
-      data: ChromeHTML
-    with_items:
-      - http
-      - https
+  # - name: Set Chrome to default Browser
+  #   win_regedit:
+  #     path: HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\{{ item }}\UserChoice
+  #     name: ProgId
+  #     data: ChromeHTML
+  #   with_items:
+  #     - http
+  #     - https
 
   - name: Set Chrome to not ask about default browser
     win_regedit:
@@ -161,6 +177,23 @@
       name: DoNotOpenServerManagerAtLogon
       data: 1
       type: dword
+
+  - name: 
+    win_user:
+      name: Administrator
+      password: ansible
+      state: present
+      account_disabled: yes
+      groups:
+        - Administrators
+
+  - name: 
+    win_user:
+      name: Nici
+      password: ansible
+      state: present
+      groups:
+        - Administrators
 
 #   - name: Remove EC2 Feedback Icon
 #     win_file:
