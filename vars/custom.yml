@@ -104,7 +104,7 @@ ec2_image_names:
   win2016_full: "Windows_Server-2016-English-Full-Base*"
   win2019_core: "Windows_Server-2019-English-Core-Base*"
   win2019_full: "Windows_Server-2019-English-Full-Base*"
-  cisco: "cisco-CSR-.16.09.02-BYOL*""
+  cisco: "cisco-CSR-.16.09.02-BYOL*"
 
 # Instance Sizes
 ec2_tower_instance_type: "t2.medium"    # Medium = 2 vCPU / 4GB
