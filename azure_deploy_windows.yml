@@ -10,6 +10,4 @@
     teardown: false
   tasks:
   - include_role:
-      name: "check_setup"
-  - include_role:
-      name: "manage-{{ instance_loc }}-instances"
+      name: "deploy-{{ instance_loc }}-windows"
