@@ -1,1 +1,3 @@
 localhost
+[docs]
+docs ansible_host=52.243.71.145 ansible_user=bstineha ansible_password=IlovetheBuckeyes22! ansible_become_pass=IlovetheBuckeyes22! private_ip=10.0.1.4
