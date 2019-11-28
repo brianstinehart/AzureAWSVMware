@@ -1,5 +1,6 @@
 ---
 - name: Configure Docs Host
+  hosts: docs
   become: True
   gather_facts: True
   vars_files:
