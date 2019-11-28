@@ -1,9 +1,12 @@
 ---
 - name: Configure Docs Host
   hosts: skylight-docs
+  remote_user: bstineha
   become: True
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
+  tags:
+    - docs
   roles:
     - linux-common
