@@ -1,6 +1,5 @@
 ---
 - name: Configure Docs Host
-  hosts: tag_linux
   become: True
   gather_facts: True
   vars_files:
