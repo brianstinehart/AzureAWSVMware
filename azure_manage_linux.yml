@@ -1,8 +1,6 @@
 ---
 - name: Configure Docs Host
   hosts: skylight-docs
-  remote_user: bstineha
-  password: "{{ azure_admin_pass }}"
   become: True
   gather_facts: True
   vars_files:
