@@ -1,6 +1,6 @@
 ---
 - name: Configure Docs Host
-  hosts: skylight-s1-w1
+  hosts: skylight-docs
   become: True
   gather_facts: True
   vars_files:
