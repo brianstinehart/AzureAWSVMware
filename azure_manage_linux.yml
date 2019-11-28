@@ -1,7 +1,7 @@
 ---
 - name: Configure Docs Host
   hosts: skylight-docs
-  remote_user: bstineha
+  # remote_user: bstineha
   become: True
   gather_facts: True
   vars_files:
