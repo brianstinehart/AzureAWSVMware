@@ -2,7 +2,7 @@
 - name: Configure Docs Host
   hosts: skylight-docs
   become: True
-  gather_facts: True
+  # gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
   tags:
