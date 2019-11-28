@@ -358,4 +358,5 @@
     name: "{{ azure_resource_group }}"
     location: "{{ azure_location }}"
     state: absent
+    force_delete_nonempty: true
 
