@@ -159,15 +159,15 @@
       Name: "{{ name_prefix + '-s' + item + '-cisco'}}"
       App: AnsibleWorkshop
     instance_tags:
-      Name: "{{ name_prefix }}-cisco"
+      Name: "{{ name_prefix + '-s' + item + '-cisco'}}"
       App: AnsibleWorkshop
       Workshop: "{{ name_prefix }}"
       Username: "{{ skylight_user }}"
       Info: "Username that provisioned this-> {{ skylight_user }}"
       Skylight: "This was provisioned through the skylight provisioner"
       Students: "{{ user_count }}"
-      short_name: 'cisco'
-      long_name: "cisco.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
+      short_name: "{{ 's' + item + '-cisco' }}"
+      long_name: "{{ 's' + item + '-cisco' }}.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
     image: "{{ ec2_ami_ids[ec2_cisco_instance_ami_type] }}"
     wait: true
     region: "{{ ec2_region }}"
