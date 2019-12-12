@@ -1,2 +1,31 @@
 - name: gather router facts
   ios_facts:
+
+- name: display version
+  debug:
+    msg: "The IOS version is: {{ ansible_net_version }}"
+
+- name: display serial number
+  debug:
+    msg: "The serial number is:{{ ansible_net_serialnum }}"
+
+- name: create a new user
+  ios_user:
+    name: nici
+    configured_password: ansible
+    state: present
+
+- name: check the running-config against master config
+  ios_config:
+    diff_against: intended
+    intended_config: "{{ lookup('file', 'master.cfg') }}"
+
+- name: load new acl into device
+  ios_config:
+    lines:
+      - 10 permit ip host 192.0.2.1 any log
+      - 20 permit ip host 192.0.2.2 any log
+      - 30 permit ip host 192.0.2.3 any log
+      - 40 permit ip host 192.0.2.4 any log
+      - 50 permit ip host 192.0.2.5 any log
+
