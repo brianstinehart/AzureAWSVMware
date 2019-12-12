@@ -38,16 +38,17 @@
 
 ################### Add Hosts ###################
 
-- name: Docs | Add new instance to host group  
-  add_host:  
-    hostname: "{{ item.invocation.module_args.tags.DNSName }}"
-    ansible_host: "{{ item.ansible_facts.azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.publicIPAddress.properties.ipAddress }}"
-    ansible_user: "bstineha"
-    ansible_password: "{{ azure_admin_pass }}"
-    ansible_become_pass: "{{ azure_admin_pass }}" 
-    private_ip: "{{ item.ansible_facts.azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.privateIPAddress }}"
+- name: Docs | Add new instance to host group
+  add_host:
+    hostname: "docs"
+    ansible_ssh_host: "{{ item.hw_eth0.ipaddresses[0] }}"
+    ansible_host: "{{ item.hw_eth0.ipaddresses[0] }}"
+    private_ip: "{{ item.hw_eth0.ipaddresses[0] }}"
+    public_ip: "{{ item.hw_eth0.ipaddresses[0] }}"
+    ansible_user: "{{ root_user }}"
+    ansible_password: "{{ root_password }}"
     groups: docs
-  with_items: "{{ docs_instances.results }}"  
+  with_items: "{{ docs_instances.results | map(attribute='instance') | list }}" 
 
 ################### Wait for Instances ###################
 
