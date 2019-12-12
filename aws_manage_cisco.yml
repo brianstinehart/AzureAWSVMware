@@ -1,6 +1,6 @@
 ---
 - name: Configure Cisco Devices
-  hosts: skylight*
+  hosts: all
   gather_facts: True
   vars_files:
     - [ 'vars/cisco.yml', 'vars/main.yml' ]
