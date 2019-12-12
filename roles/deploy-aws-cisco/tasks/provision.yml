@@ -93,7 +93,7 @@
     content: "{{ create_key.key.private_key }}"
     dest: "{{ playbook_dir }}/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
     mode: '0400'
-  when: create_key.changed
+  # when: create_key.changed
 
 ################### Create Security Groups ###################
 
