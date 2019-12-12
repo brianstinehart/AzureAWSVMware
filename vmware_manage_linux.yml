@@ -1,6 +1,6 @@
 ---
 - name: Configure Docs Host
-  hosts: skylight-docs
+  hosts: 192.168.1.22
   become: True
   gather_facts: True
   vars_files:
