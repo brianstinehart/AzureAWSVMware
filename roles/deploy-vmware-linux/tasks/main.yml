@@ -26,3 +26,32 @@
   register: docs_jobs
   async: 7200
   poll: 0
+
+  ################### Wait for Jobs ###################
+
+- name: Wait for docs instance creation to complete
+  async_status: jid="{{ item.ansible_job_id }}"
+  register: docs_instances
+  until: docs_instances.finished
+  retries: 300
+  with_items: "{{ docs_jobs.results }}"
+
+################### Add Hosts ###################
+
+- name: Docs | Add new instance to host group  
+  add_host:  
+    hostname: "{{ item.invocation.module_args.tags.DNSName }}"
+    ansible_host: "{{ item.ansible_facts.azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.publicIPAddress.properties.ipAddress }}"
+    ansible_user: "bstineha"
+    ansible_password: "{{ azure_admin_pass }}"
+    ansible_become_pass: "{{ azure_admin_pass }}" 
+    private_ip: "{{ item.ansible_facts.azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.privateIPAddress }}"
+    groups: docs
+  with_items: "{{ docs_instances.results }}"  
+
+################### Wait for Instances ###################
+
+- name: Docs | Wait for SSH to come up
+  wait_for_connection:
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups['docs'] }}"  
