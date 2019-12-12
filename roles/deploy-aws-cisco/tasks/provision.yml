@@ -4,6 +4,11 @@
 
 - include_tasks: find_ami_ids.yml
 
+- name: ensure workshop folder {{ name_prefix }} exists
+  file:
+    path: "{{ playbook_dir }}/workshops/{{ name_prefix }}"
+    state: directory
+
 ################### Create Resources ###################
 - name: Create AWS VPC {{ name_prefix }}-vpc
   ec2_vpc_net:
