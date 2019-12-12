@@ -1,10 +1,10 @@
 ---
-- name: Configure Windows Servers
-  hosts: windows
+- name: Configure Cisco Devices
+  hosts: skylight*
   gather_facts: True
   vars_files:
-    - [ 'vars/custom.yml', 'vars/main.yml' ]
+    - [ 'vars/cisco.yml', 'vars/main.yml' ]
   tags:
-    - windows_hosts
+    - manage-instances
   roles:
-    - windows-workstation
+    - manage-cisco

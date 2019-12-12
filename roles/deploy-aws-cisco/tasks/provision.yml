@@ -156,7 +156,7 @@
     instance_type: "{{ ec2_cisco_instance_type }}"
     exact_count: 2
     count_tag:
-      Name: "{{ name_prefix }}-cisco"
+      Name: "{{ name_prefix + '-s' + item + '-cisco'}}"
       App: AnsibleWorkshop
     instance_tags:
       Name: "{{ name_prefix }}-cisco"
@@ -252,21 +252,19 @@
 
 ################### Wait for Instances ################### 
 
-- name: Cisco | Wait for SSH to come up
-  wait_for_connection:
-    ansible_network_os: ios
-    ansible_connection: network_cli
-  delegate_to: "{{ item }}"
-  with_items: "{{ groups['cisco'] }}"  
+# - name: Cisco | Wait for SSH to come up
+#   wait_for_connection:
+#   delegate_to: "{{ item }}"
+#   with_items: "{{ groups['cisco'] }}"  
 
 # - name: Configure external tower if needed
 #   include: external_tower.yml
 #   when: skylight_external_tower
 
-- name: grab all network interfaces for VPC 1 (NETWORKING MODE)
-  ec2_eni_facts:
-    region: "{{ ec2_region }}"
-    filters:
-      vpc-id: "{{ec2_vpc_id}}"
-  register: eni_facts_1
+# - name: grab all network interfaces for VPC 1 (NETWORKING MODE)
+#   ec2_eni_facts:
+#     region: "{{ ec2_region }}"
+#     filters:
+#       vpc-id: "{{ec2_vpc_id}}"
+#   register: eni_facts_1
 
