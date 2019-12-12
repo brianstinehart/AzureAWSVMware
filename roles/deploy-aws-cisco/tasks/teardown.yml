@@ -29,7 +29,7 @@
     skylight_user: '{{ whoami.arn.split("/")[-1] }}'
 
 # ----------------------- Destroy Docs Instances -----------------------
-- name: Get ec2 Docs instance information
+- name: Get ec2 Cisco instance information
   ec2_instance_facts:
     region: "{{ ec2_region }}"
     filters:
@@ -63,7 +63,7 @@
 #  when: public_dns_zone is defined and item.instances.0 is defined
 #  ignore_errors: yes
 
-- name: Terminate Docs Instances
+- name: Terminate Cisco Instances
   ec2:
     region: "{{ ec2_region }}"
     state: "absent"
