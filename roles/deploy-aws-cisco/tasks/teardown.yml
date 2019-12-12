@@ -128,7 +128,7 @@
   with_items: "{{ route_table_facts.route_tables }}"
   register: result
   until: result is success
-  retries: 5
+  retries: 2
   delay: 5
   ignore_errors: true
 
@@ -140,6 +140,6 @@
     state: absent
   register: result
   until: result is success
-  retries: 1
+  retries: 2
   delay: 1
   ignore_errors: true
