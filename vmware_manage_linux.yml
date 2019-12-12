@@ -1,0 +1,11 @@
+---
+- name: Configure Docs Host
+  hosts: skylight-docs
+  become: True
+  gather_facts: True
+  vars_files:
+    - [ 'vars/vmware.yml', 'vars/main.yml' ]
+  tags:
+    - docs
+  roles:
+    - linux-common
