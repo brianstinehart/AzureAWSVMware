@@ -152,7 +152,7 @@
 - name: Cisco | Launch Instances
   ec2:
     key_name: "{{ skylight_user }}-{{ name_prefix }}-key"
-    group: "{{ name_prefix }}-docssg"
+    group: "{{ name_prefix }}-ciscosg"
     instance_type: "{{ ec2_cisco_instance_type }}"
     exact_count: 2
     count_tag:
