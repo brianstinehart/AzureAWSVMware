@@ -4,7 +4,7 @@
 ##########################################################
 
 # Where to provision instances (ec2, azure, vmware)
-instance_loc: azure
+instance_loc: vmware
 name_prefix: "skylight"
 
 # Needed for AD and windows client provision

@@ -1,0 +1,28 @@
+################### Build Instances ###################
+- name: Docs | Launch Docs Instance
+  vmware_guest2:
+    hostname: "{{ vCenterServer }}"
+    username: "{{ vCenterUsername }}"
+    password: "{{ vCenterPassword }}"
+    datacenter: "{{ vCenterDatacenter }}"
+    cluster: "{{ vCenterCluster }}"
+    folder: "{{ vCenterFolder }}"
+    name: "{{ name_prefix }}-docs"
+    template: "{{ vmware_docs_template }}"
+    # snapshot_src: "{{ VCenterCloneSnapshotLinux | default(omit, True) }}"
+    # linked_clone: "{{ VCenterLinkedClone | default(omit, True) }}"
+    state: poweredon
+    wait_for_ip_address: true
+    validate_certs: false
+    hardware:
+      memory_mb: 4096
+      num_cpus: 2
+    networks:
+    - name: "{{ vCenterPortGroup }}"
+      type: dhcp
+    customization:
+      hostname: docs
+  with_sequence: count=1
+  register: docs_jobs
+  async: 7200
+  poll: 0
