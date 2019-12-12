@@ -154,7 +154,7 @@
     key_name: "{{ skylight_user }}-{{ name_prefix }}-key"
     group: "{{ name_prefix }}-ciscosg"
     instance_type: "{{ ec2_cisco_instance_type }}"
-    exact_count: 2
+    exact_count: 1
     count_tag:
       Name: "{{ name_prefix + '-s' + item + '-cisco'}}"
       App: AnsibleWorkshop
@@ -174,7 +174,7 @@
     vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
     user_data: ''
     assign_public_ip: yes
-  with_sequence: count=1
+  with_sequence: count={{user_count}}
   register: cisco_jobs
   async: 7200
   poll: 0

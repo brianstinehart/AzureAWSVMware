@@ -14,7 +14,7 @@ ldap_basedn: "DC=ansibleworkshop,DC=com"
 domain_admin_password: "MyP@ssw0rd21"
 
 # Number of users and prefix for user name
-user_count: 1
+user_count: 2
 user_prefix: student
 users_password: "Ansibl3--"
 
