@@ -142,3 +142,4 @@
   until: result is success
   retries: 1
   delay: 1
+  ignore_errors: true
