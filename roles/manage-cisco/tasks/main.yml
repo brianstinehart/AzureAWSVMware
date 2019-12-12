@@ -21,13 +21,10 @@
     diff_ignore_lines:
       - ntp clock .*
 
-- name: load new acl into device
+- name: ensure that the desired snmp strings are present
   ios_config:
     backup: yes
-    lines:
-      - 10 permit ip host 192.0.2.1 any log
-      - 20 permit ip host 192.0.2.2 any log
-      - 30 permit ip host 192.0.2.3 any log
-      - 40 permit ip host 192.0.2.4 any log
-      - 50 permit ip host 192.0.2.5 any log
-
+    commands:
+      - snmp-server community ansible-public RO
+      - snmp-server community ansible-private RW
+      - snmp-server community ansible-test RO
