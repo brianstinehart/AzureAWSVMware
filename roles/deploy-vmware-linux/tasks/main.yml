@@ -12,7 +12,6 @@
     # snapshot_src: "{{ VCenterCloneSnapshotLinux | default(omit, True) }}"
     # linked_clone: "{{ VCenterLinkedClone | default(omit, True) }}"
     state: poweredon
-    port: 22
     wait_for_ip_address: true
     validate_certs: false
     hardware:
