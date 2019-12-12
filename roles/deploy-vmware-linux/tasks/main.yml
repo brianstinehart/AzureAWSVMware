@@ -54,5 +54,7 @@
 
 - name: Docs | Wait for SSH to come up
   wait_for_connection:
+    ansible_network_os: ios
+    ansible_connection: network_cli
   delegate_to: "{{ item }}"
   with_items: "{{ groups['docs'] }}"  
