@@ -54,5 +54,6 @@
 
 - name: Docs | Wait for SSH to come up
   wait_for_connection:
+  timeout: 90
   delegate_to: "{{ item }}"
   with_items: "{{ groups['docs'] }}"  
