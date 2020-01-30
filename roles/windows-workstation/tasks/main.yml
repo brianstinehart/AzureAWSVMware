@@ -15,7 +15,7 @@
     with_items:
       - putty
       - telnet
-      - googlechrome
+      # - googlechrome
     register: chocolatey_packages_install
     until: chocolatey_packages_install is success
     delay: 3
@@ -147,29 +147,29 @@
   #     - http
   #     - https
 
-  - name: Set Chrome to not ask about default browser
-    win_regedit:
-      path: HKLM:\Software\Policies\Google\Chrome
-      name: DefaultBrowserSettingEnabled
-      data: 0
-      type: dword
+  # - name: Set Chrome to not ask about default browser
+  #   win_regedit:
+  #     path: HKLM:\Software\Policies\Google\Chrome
+  #     name: DefaultBrowserSettingEnabled
+  #     data: 0
+  #     type: dword
 
-  - name: Disable Chrome Welcome Screen
-    win_regedit:
-      path: HKLM:\Software\Policies\Google\Chrome
-      name: "{{ item }}"
-      data: 0
-      type: dword
-    with_items:
-      - PromotionalTabsEnabled
-      - WelcomePageOnOSUpgradeEnabled
+  # - name: Disable Chrome Welcome Screen
+  #   win_regedit:
+  #     path: HKLM:\Software\Policies\Google\Chrome
+  #     name: "{{ item }}"
+  #     data: 0
+  #     type: dword
+  #   with_items:
+  #     - PromotionalTabsEnabled
+  #     - WelcomePageOnOSUpgradeEnabled
 
-  - name: Disable Chrome Syncing
-    win_regedit:
-      path: HKLM:\Software\Policies\Google\Chrome
-      name: SyncDisabled
-      data: 1
-      type: dword
+  # - name: Disable Chrome Syncing
+  #   win_regedit:
+  #     path: HKLM:\Software\Policies\Google\Chrome
+  #     name: SyncDisabled
+  #     data: 1
+  #     type: dword
 
   - name: Disable Server Management at Startup
     win_regedit:
