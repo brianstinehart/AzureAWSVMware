@@ -1,8 +1,4 @@
 <p align="center">
-  <img width="832" height="416" src="https://www.interactive.com.au/wp-content/themes/true-theme/resources/assets/images/brand/share-1280-by-640.jpg">
-</p>
-
-<p align="center">
   <img width="416" height="512" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/1200px-Ansible_logo.svg.png">
 </p>
 
