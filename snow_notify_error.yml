@@ -1,0 +1,19 @@
+---
+- name: Sbnow Notification
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  tasks:
+
+    - name: Update Service Now Ticket to indicate start
+      snow_record:
+        username: "{{ snow_username }}"
+        password: "{{ snow_password }}"
+        instance: "{{ snow_instance }}"
+        state: present
+        table: sc_request
+        number: "{{ snow_request }}"
+        data:
+          work_notes: "Ansible Tower - An Error Occured"
+      register: snow_var
