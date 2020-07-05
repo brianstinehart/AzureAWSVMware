@@ -205,3 +205,10 @@ azure_win_offer: "WindowsServer"
 azure_win_sku: "2019-Datacenter"
 azure_win_version: "latest"
 
+##########################################################
+####################### ServiceNow INFO #######################
+##########################################################
+
+#dummy snow value if none provided
+snow_request: "{{ ansible_date_time.epoch }}"
+

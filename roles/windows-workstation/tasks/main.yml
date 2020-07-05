@@ -8,7 +8,7 @@
       name: chocolatey
       state: present
 
-  - name: Install Telnet, Chrome, and Putty
+  - name: Install Telnet and Putty
     win_chocolatey:
       name: "{{ item }}"
       ignore_checksums: true
@@ -91,7 +91,7 @@
   - name: Create Readme file
     win_copy:
       dest: C:\Users\{{ user }}\Documents\Interactive\README.md
-      content: "Thanks for getting this session organised, Nici!"
+      content: "Thanks to the EA team"
     register: initialize
 
   - name: Update hosts file
@@ -189,7 +189,7 @@
 
   - name: Create user account and add to Admin group
     win_user:
-      name: Nici
+      name: EAadmin
       password: Ans1bl3--
       state: present
       groups:

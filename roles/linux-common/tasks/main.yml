@@ -96,7 +96,7 @@
     - ansible_distribution_major_version|int == 8
     - instance_loc != 'ec2'
 
-- name: Install packages
+- name: Install packages - vim & bind-utils
   package:
     name:
       - vim
@@ -105,12 +105,12 @@
 
 - name: Create user and add to admin group
   user:
-    name: nici
-    comment: Nici Sindhav
+    name: EAadmin
+    comment: Sudo user
     password: $6$MDZERLPryot60GAz$pcUtETE2UsVZxFL3s0qdKOHLi7nU38cpcNtFsqbGGmp5TW1uz/Z4S/MRECa1qTZgXxjuWy49IbBkjqA/VMtMR0
     group: adm
 
 - name: Give user sudo privileges
   user:
-    name: nici
+    name: EAadmin
     group: wheel
