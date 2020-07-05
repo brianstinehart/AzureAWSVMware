@@ -6,7 +6,7 @@
 
 - name: ensure workshop folder {{ name_prefix }} exists
   file:
-    path: "/var/lib/awx/projects/_156__interactive/workshops/{{ name_prefix }}"
+    path: "/var/lib/awx/projects/workshops/{{ name_prefix }}"
     state: directory
 
 # - name: Check that the provided license exists

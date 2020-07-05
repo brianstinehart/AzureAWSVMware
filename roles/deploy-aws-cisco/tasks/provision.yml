@@ -91,7 +91,7 @@
 - name: Save the private key
   copy:
     content: "{{ create_key.key.private_key }}"
-    dest: "/var/lib/awx/projects/_156__interactive/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
+    dest: "/var/lib/awx/projects/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
     mode: '0400'
   when: create_key.changed
 

@@ -12,5 +12,5 @@
   post_tasks:
    - name: Remove workshop local files
      file:
-       dest: "{{ playbook_dir }}/workshops/{{ name_prefix }}"
+       dest: "/var/lib/awx/projects/workshops/{{ name_prefix }}"
        state: absent
