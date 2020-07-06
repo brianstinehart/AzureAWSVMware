@@ -210,5 +210,5 @@ azure_win_version: "latest"
 ##########################################################
 
 #dummy snow value if none provided
-snow_request: "{{ ansible_date_time.epoch }}"
+#snow_request: "{{ ansible_date_time.epoch }}"
 
