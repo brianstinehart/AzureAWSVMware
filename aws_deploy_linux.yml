@@ -21,4 +21,3 @@
     # - name: Show webserver details
     #   debug: 
     #     msg: "The Server is available at http://{{ ansible_host }}"
-  
