@@ -134,14 +134,14 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-- name: Azure | Tower | Delete network interface
+- name: Azure | WebServer | Delete network interface
   azure_rm_networkinterface:
     client_id: "{{ azure_client_id }}"
     secret: "{{ azure_secret }}"
     subscription_id: "{{ azure_subscription_id }}"
     tenant: "{{ azure_tenant }}"
     resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    name: "{{ name_prefix + '-s' + item + '-WebServer01'}}"
     state: absent
   with_sequence: count={{ user_count }}
   ignore_errors: yes
@@ -205,14 +205,14 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-- name: Azure | Tower | Delete Security Group
+- name: Azure | WebServer | Delete Security Group
   azure_rm_securitygroup:
     client_id: "{{ azure_client_id }}"
     secret: "{{ azure_secret }}"
     subscription_id: "{{ azure_subscription_id }}"
     tenant: "{{ azure_tenant }}"
     resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    name: "{{ name_prefix + '-s' + item + '-WebServer01'}}"
     state: absent
   with_sequence: count={{ user_count }}
   ignore_errors: yes
@@ -276,14 +276,14 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-- name: Azure | Tower | Delete Public IP Addresses
+- name: Azure | WebServer | Delete Public IP Addresses
   azure_rm_publicipaddress:
     client_id: "{{ azure_client_id }}"
     secret: "{{ azure_secret }}"
     subscription_id: "{{ azure_subscription_id }}"
     tenant: "{{ azure_tenant }}"
     resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    name: "{{ name_prefix + '-s' + item + '-WebServer01'}}"
     state: absent
   with_sequence: count={{ user_count }}
   ignore_errors: yes
