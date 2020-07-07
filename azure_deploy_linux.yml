@@ -11,3 +11,14 @@
   tasks:
   - include_role:
       name: "deploy-{{ instance_loc }}-linux"
+
+    #invoking from a workflow, then add a message for ServiceNow
+    - name: set stats
+      set_stats:
+        data:
+          snow_note: "{{ instance_loc |upper }} - Windows Servers Completed - IIS Installed"
+        
+    # - name: Show webserver details
+    #   debug: 
+    #     msg: "The Server is available at http://{{ ansible_host }}"
+  
