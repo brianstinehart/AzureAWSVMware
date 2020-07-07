@@ -6,7 +6,7 @@
     azure_virtual_network: "{{ name_prefix }}-network"
     azure_virtual_subnet:  "{{ (name_prefix + 'subnet')  | lower | regex_replace('[^0-9a-z]+', '') }}"
 
-- name: Docs | Launch Instance
+- name: Launch RHEL Instance
   azure_rm_virtualmachine:
     client_id: "{{ azure_client_id }}"
     secret: "{{ azure_secret }}"
@@ -29,22 +29,24 @@
       - 8080
       - 443
     tags:
-      Name: "{{ name_prefix + '-docs'}}"
-      DNSName: "docs"
+      Name: "{{ name_prefix + '-s' + item + '-tower'}}"
+      DNSName: "{{ 's' + item + '-tower'}}"
       App: AnsibleWorkshop
+      Student: "{{ item }}"
+      User: "{{ user_prefix + item }}"
     image:
       publisher: "{{ azure_rhel_publisher }}"
       offer: "{{ azure_rhel_offer }}"
       version: "{{ azure_rhel_version }}"
       sku: "{{ azure_rhel_sku }}"
-  with_sequence: count=1
+  with_sequence: count={{ user_count }}
   register: docs_jobs
   async: 7200
   poll: 0
 
 ################### Wait for Jobs ###################
 
-- name: Wait for docs instance creation to complete
+- name: Wait for RHEL instance creation to complete
   async_status: jid="{{ item.ansible_job_id }}"
   register: docs_instances
   until: docs_instances.finished
@@ -53,7 +55,7 @@
 
 ################### Add Hosts ###################
 
-- name: Docs | Add new instance to host group  
+- name: RHEL | Add new instance to host group  
   add_host:  
     hostname: "{{ item.invocation.module_args.tags.DNSName }}"
     ansible_host: "{{ item.ansible_facts.azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.publicIPAddress.properties.ipAddress }}"
@@ -66,7 +68,7 @@
 
 ################### Wait for Instances ###################
 
-- name: Docs | Wait for SSH to come up
+- name: RHEL | Wait for SSH to come up
   wait_for_connection:
   delegate_to: "{{ item }}"
   with_items: "{{ groups['docs'] }}"  
