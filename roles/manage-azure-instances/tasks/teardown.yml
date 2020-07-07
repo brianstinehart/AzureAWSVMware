@@ -83,14 +83,14 @@
 #   async: 7200
 #   poll: 0
 
-- name: Azure | Tower | Destroy instance
+- name: Azure | WebServer | Destroy instance
   azure_rm_virtualmachine:
     client_id: "{{ azure_client_id }}"
     secret: "{{ azure_secret }}"
     subscription_id: "{{ azure_subscription_id }}"
     tenant: "{{ azure_tenant }}"
     resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-s' + item + '-tower'}}"
+    name: "{{ name_prefix + '-s' + item + '-WebServer'}}"
     started: False
     state: absent
   with_sequence: count={{ user_count }}
