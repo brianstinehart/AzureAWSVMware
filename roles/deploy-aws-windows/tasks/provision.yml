@@ -142,10 +142,10 @@
     instance_type: "{{ ec2_windows_instance_type }}"
     exact_count: 1
     count_tag:
-      Name: "{{ name_prefix + '-s' + item + '-win1'}}"
+      Name: "{{ name_prefix + '-s' + item + '-database'}}"
       App: AnsibleWorkshop
     instance_tags:
-      Name: "{{ name_prefix + '-s' + item + '-win1'}}"
+      Name: "{{ name_prefix + '-s' + item + '-database'}}"
       App: AnsibleWorkshop
       Workshop: "{{ name_prefix }}"
       Student: "{{ user_prefix + item }}"
@@ -153,13 +153,13 @@
       Info: "Username that provisioned this-> {{ skylight_user }}"
       Skylight: "This was provisioned through the skylight provisioner"
       Students: "{{ user_count }}"
-      short_name: "{{ 's' + item + '-win1' }}"
-      long_name: "{{ 's' + item + '-win1' }}.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
+      short_name: "{{ 's' + item + '-database' }}"
+      long_name: "{{ 's' + item + '-database' }}.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
     image: "{{ ec2_ami_ids[ec2_windows_instance_ami_type] }}"
     wait: true
     region: "{{ ec2_region }}"
     vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
-    user_data: "{{ lookup('template', 'win_ec2_user_data.j2', template_vars=dict(vm_name='s' + item + '-win1')) }}"
+    user_data: "{{ lookup('template', 'win_ec2_user_data.j2', template_vars=dict(vm_name='s' + item + '-database')) }}"
     assign_public_ip: yes
   with_sequence: count={{user_count}}
   register: windows1_jobs
@@ -194,7 +194,7 @@
 
 - name: Windows | Add new instance to host group
   add_host:
-    hostname: "s{{ item.item.tags.Student | regex_replace('[^0-9]', '') }}-win1"
+    hostname: "s{{ item.item.tags.Student | regex_replace('[^0-9]', '') }}-database"
     ansible_host: "{{ item.item.public_ip }}"
     private_ip: "{{ item.item.private_ip }}"
     ansible_port: "{{ '22' if (windows_ansible_connection is defined and windows_ansible_connection == 'ssh') else '5986' }}"
