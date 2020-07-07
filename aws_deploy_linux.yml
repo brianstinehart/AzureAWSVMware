@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: False
   vars_files:
-    - [ 'vars/custom.yml', 'vars/main.yml' ]
+    - [ 'vars/aws.yml', 'vars/main.yml' ]
   tags:
     - manage-instances
   vars:
