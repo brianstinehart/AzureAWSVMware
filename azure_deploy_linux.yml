@@ -9,8 +9,8 @@
   vars:
     teardown: false
   tasks:
-  - include_role:
-      name: "deploy-{{ instance_loc }}-linux"
+    - include_role:
+        name: "deploy-{{ instance_loc }}-linux"
 
     #invoking from a workflow, then add a message for ServiceNow
     - name: set stats
