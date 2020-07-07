@@ -2,12 +2,12 @@
   hosts: localhost
   gather_facts: no
   vars_files:
-    - [ 'vars/cisco.yml', 'vars/main.yml' ]
+    - [ 'vars/aws.yml', 'vars/main.yml' ]
   vars:
     teardown: true
   tasks:
   - include_role:
-      name: "deploy-{{ instance_loc }}-cisco"
+      name: "manage-{{ instance_loc }}-instances"
 
   post_tasks:
    - name: Remove workshop local files
