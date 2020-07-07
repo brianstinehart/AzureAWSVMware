@@ -16,7 +16,11 @@
     - name: set stats
       set_stats:
         data:
-          snow_note: "{{ instance_loc |upper }} - {{ user_count }} Linux Servers Completed - Apache Installed - The Server is available at http://{{ ansible_host }}"
+          snow_note: "{{ instance_loc |upper }} - Linux Servers Completed 
+          
+          Number of servers: {{ user_count }}
+          
+          Apache Installed - The Server is available at http://{{ ansible_host }}"
         
     # - name: Show webserver details
     #   debug: 
