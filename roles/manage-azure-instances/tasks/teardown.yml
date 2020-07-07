@@ -38,20 +38,20 @@
 #   async: 7200
 #   poll: 0
 
-- name: Azure | Docs | Destroy instance
-  azure_rm_virtualmachine:
-    client_id: "{{ azure_client_id }}"
-    secret: "{{ azure_secret }}"
-    subscription_id: "{{ azure_subscription_id }}"
-    tenant: "{{ azure_tenant }}"
-    resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix }}-docs"
-    started: False
-    state: absent
-  with_sequence: count=1
-  register: docs_jobs
-  async: 7200
-  poll: 0
+# - name: Azure | Docs | Destroy instance
+#   azure_rm_virtualmachine:
+#     client_id: "{{ azure_client_id }}"
+#     secret: "{{ azure_secret }}"
+#     subscription_id: "{{ azure_subscription_id }}"
+#     tenant: "{{ azure_tenant }}"
+#     resource_group: "{{ azure_resource_group }}"
+#     name: "{{ name_prefix }}-docs"
+#     started: False
+#     state: absent
+#   with_sequence: count=1
+#   register: docs_jobs
+#   async: 7200
+#   poll: 0
 
 - name: Azure | Windows | Destroy instance 1
   azure_rm_virtualmachine:
@@ -83,20 +83,20 @@
 #   async: 7200
 #   poll: 0
 
-# - name: Azure | Tower | Destroy instance
-#   azure_rm_virtualmachine:
-#     client_id: "{{ azure_client_id }}"
-#     secret: "{{ azure_secret }}"
-#     subscription_id: "{{ azure_subscription_id }}"
-#     tenant: "{{ azure_tenant }}"
-#     resource_group: "{{ azure_resource_group }}"
-#     name: "{{ name_prefix + '-s' + item + '-tower'}}"
-#     started: False
-#     state: absent
-#   with_sequence: count={{ user_count }}
-#   register: tower_jobs
-#   async: 7200
-#   poll: 0
+- name: Azure | Tower | Destroy instance
+  azure_rm_virtualmachine:
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_secret }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    tenant: "{{ azure_tenant }}"
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ name_prefix + '-s' + item + '-tower'}}"
+    started: False
+    state: absent
+  with_sequence: count={{ user_count }}
+  register: tower_jobs
+  async: 7200
+  poll: 0
 
 ################### Wait for Jobs ###################
 
@@ -134,17 +134,17 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-# - name: Azure | Tower | Delete network interface
-#   azure_rm_networkinterface:
-#     client_id: "{{ azure_client_id }}"
-#     secret: "{{ azure_secret }}"
-#     subscription_id: "{{ azure_subscription_id }}"
-#     tenant: "{{ azure_tenant }}"
-#     resource_group: "{{ azure_resource_group }}"
-#     name: "{{ name_prefix + '-s' + item + '-tower01'}}"
-#     state: absent
-#   with_sequence: count={{ user_count }}
-#   ignore_errors: yes
+- name: Azure | Tower | Delete network interface
+  azure_rm_networkinterface:
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_secret }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    tenant: "{{ azure_tenant }}"
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    state: absent
+  with_sequence: count={{ user_count }}
+  ignore_errors: yes
 
 # - name: Azure | Gitlab | Delete network interface
 #   azure_rm_networkinterface:
@@ -157,16 +157,16 @@
 #     state: absent
 #   ignore_errors: yes
 
-- name: Azure | Docs | Delete network interface
-  azure_rm_networkinterface:
-    client_id: "{{ azure_client_id }}"
-    secret: "{{ azure_secret }}"
-    subscription_id: "{{ azure_subscription_id }}"
-    tenant: "{{ azure_tenant }}"
-    resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-docs01'}}"
-    state: absent
-  ignore_errors: yes
+# - name: Azure | Docs | Delete network interface
+#   azure_rm_networkinterface:
+#     client_id: "{{ azure_client_id }}"
+#     secret: "{{ azure_secret }}"
+#     subscription_id: "{{ azure_subscription_id }}"
+#     tenant: "{{ azure_tenant }}"
+#     resource_group: "{{ azure_resource_group }}"
+#     name: "{{ name_prefix + '-docs01'}}"
+#     state: absent
+#   ignore_errors: yes
 
 # - name: Azure | DC | Delete network interface
 #   azure_rm_networkinterface:
@@ -205,17 +205,17 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-# - name: Azure | Tower | Delete Security Group
-#   azure_rm_securitygroup:
-#     client_id: "{{ azure_client_id }}"
-#     secret: "{{ azure_secret }}"
-#     subscription_id: "{{ azure_subscription_id }}"
-#     tenant: "{{ azure_tenant }}"
-#     resource_group: "{{ azure_resource_group }}"
-#     name: "{{ name_prefix + '-s' + item + '-tower01'}}"
-#     state: absent
-#   with_sequence: count={{ user_count }}
-#   ignore_errors: yes
+- name: Azure | Tower | Delete Security Group
+  azure_rm_securitygroup:
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_secret }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    tenant: "{{ azure_tenant }}"
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    state: absent
+  with_sequence: count={{ user_count }}
+  ignore_errors: yes
 
 # - name: Azure | Gitlab | Delete Security Group
 #   azure_rm_securitygroup:
@@ -228,16 +228,16 @@
 #     state: absent
 #   ignore_errors: yes
 
-- name: Azure | Docs | Delete Security Group
-  azure_rm_securitygroup:
-    client_id: "{{ azure_client_id }}"
-    secret: "{{ azure_secret }}"
-    subscription_id: "{{ azure_subscription_id }}"
-    tenant: "{{ azure_tenant }}"
-    resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-docs01'}}"
-    state: absent
-  ignore_errors: yes
+# - name: Azure | Docs | Delete Security Group
+#   azure_rm_securitygroup:
+#     client_id: "{{ azure_client_id }}"
+#     secret: "{{ azure_secret }}"
+#     subscription_id: "{{ azure_subscription_id }}"
+#     tenant: "{{ azure_tenant }}"
+#     resource_group: "{{ azure_resource_group }}"
+#     name: "{{ name_prefix + '-docs01'}}"
+#     state: absent
+#   ignore_errors: yes
 
 # - name: Azure | DC | Delete Security Group
 #   azure_rm_securitygroup:
@@ -276,17 +276,17 @@
 #   with_sequence: count={{ user_count }}
 #   ignore_errors: yes
 
-# - name: Azure | Tower | Delete Public IP Addresses
-#   azure_rm_publicipaddress:
-#     client_id: "{{ azure_client_id }}"
-#     secret: "{{ azure_secret }}"
-#     subscription_id: "{{ azure_subscription_id }}"
-#     tenant: "{{ azure_tenant }}"
-#     resource_group: "{{ azure_resource_group }}"
-#     name: "{{ name_prefix + '-s' + item + '-tower01'}}"
-#     state: absent
-#   with_sequence: count={{ user_count }}
-#   ignore_errors: yes
+- name: Azure | Tower | Delete Public IP Addresses
+  azure_rm_publicipaddress:
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_secret }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    tenant: "{{ azure_tenant }}"
+    resource_group: "{{ azure_resource_group }}"
+    name: "{{ name_prefix + '-s' + item + '-tower01'}}"
+    state: absent
+  with_sequence: count={{ user_count }}
+  ignore_errors: yes
 
 # - name: Azure | Gitlab | Delete Public IP Addresses
 #   azure_rm_publicipaddress:
@@ -299,16 +299,16 @@
 #     state: absent
 #   ignore_errors: yes
 
-- name: Azure | Docs | Delete Public IP Addresses
-  azure_rm_publicipaddress:
-    client_id: "{{ azure_client_id }}"
-    secret: "{{ azure_secret }}"
-    subscription_id: "{{ azure_subscription_id }}"
-    tenant: "{{ azure_tenant }}"
-    resource_group: "{{ azure_resource_group }}"
-    name: "{{ name_prefix + '-docs01'}}"
-    state: absent
-  ignore_errors: yes
+# - name: Azure | Docs | Delete Public IP Addresses
+#   azure_rm_publicipaddress:
+#     client_id: "{{ azure_client_id }}"
+#     secret: "{{ azure_secret }}"
+#     subscription_id: "{{ azure_subscription_id }}"
+#     tenant: "{{ azure_tenant }}"
+#     resource_group: "{{ azure_resource_group }}"
+#     name: "{{ name_prefix + '-docs01'}}"
+#     state: absent
+#   ignore_errors: yes
 
 # - name: Azure | DC | Delete Public IP Addresses
 #   azure_rm_publicipaddress:
