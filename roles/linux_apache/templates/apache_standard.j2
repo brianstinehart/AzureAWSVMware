@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Red Hat CI/CD Demo</title>
+  </head>
+  <body>
+
+      <img src="https://hostingwiki.org/wp-content/uploads/2019/09/apache.png" width="30%" height="30%">
+
+    {% if deploy_location == 'gcp' %}
+      <img src="https://miro.medium.com/max/1000/0*brH9cM9rnSRx2I-S.png" width="20%" height="20%">
+    {% endif %}
+
+    {% if deploy_location == 'aws' %}
+      <img src="https://s19386.pcdn.co/wp-content/uploads/2018/10/Powered-by-AWS-logo.png" width="35%" height="35%">
+    {% endif %}
+
+    {% if deploy_location == 'azure' %}
+      <img src="https://seekvectorlogo.com/wp-content/uploads/2018/01/microsoft-azure-vector-logo.png" width="20%" height="20%">
+    {% endif %}
+
+      <p></p>
+      <hr>
+      <iframe src="https://www.redhat.com/en/technologies/management/ansible" width="100%" height="1000"></iframe>
+      <br>
+  </body>
+  </html>

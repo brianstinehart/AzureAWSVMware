@@ -1,0 +1,30 @@
+---
+
+  - name: Set Details
+    set_fact:
+      fds: fds
+
+
+  - name: Install apache packages 
+    yum:
+      name: httpd
+      state: present
+
+
+  - name: Create Website Content
+    template:
+      src: apache_standard.j2
+      dest: "{{ apache_location }}"
+     
+      
+  # - name: Copy website Content
+  #   copy:
+  #     content: "{{ apache_content}}"
+  #     dest: "{{ apache_location }}"
+  #   when: deploy_location == 'AWS'
+
+
+  - name: ensure httpd is running
+    service:
+      name: httpd 
+      state: started

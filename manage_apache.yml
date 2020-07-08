@@ -1,0 +1,24 @@
+---
+- name: Set up Apache Web Server
+  hosts: EA-s1-WebServer
+  become: true
+  
+  tasks:
+
+    - include_role:
+        name: "linux_apache"
+
+    #invoking from a workflow, then add a message for SNOW
+    - name: set stats
+      set_stats:
+        data:
+          snow_note: "{{ instance_loc |upper }} - Linux Servers Completed 
+          
+          Number of servers: {{ user_count }}
+          
+          Apache Installed - The Server is available at http://{{ ansible_host }}"
+
+
+    - name: Show webserver details
+      debug: 
+        msg: "The Server is available at http://{{ ansible_host }}"

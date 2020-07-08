@@ -1,6 +1,6 @@
 ---
-- name: Configure Docs Host
-  hosts: skylight-docs
+- name: Configure WebServer
+  hosts: EA-s1-WebServer
   become: True
   gather_facts: True
   vars_files:
