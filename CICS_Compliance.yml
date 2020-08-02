@@ -9,5 +9,5 @@
 
   tasks:
   - include_role:
-      name: "RHEL7-CIS"
+      name: "linux-RHEL7-CIS"
 
