@@ -1,0 +1,10 @@
+---
+- name: Provision New Windows Instances
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+    - include_role:
+        name: "RHEL7-CIS"
+
