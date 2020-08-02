@@ -69,10 +69,10 @@
 #   register: sshd_config
 #   changed_when: "sshd_config.rc != 0"
 
-# - name: restart sshd - after config check
-#   service:
-#       name: sshd
-#       state: restarted
+- name: restart sshd - after config check
+  service:
+      name: sshd
+      state: restarted
 
 - name: reload dconf
   become: yes
