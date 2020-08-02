@@ -1,7 +1,11 @@
 ---
 - name: Provision New Windows Instances
-  hosts: all
+  hosts: EA-s1-WebServer
   gather_facts: true
+  vars_files:
+    - [ 'vars/custom.yml', 'vars/main.yml' ]
+  tags:
+    - docs
 
   tasks:
 
