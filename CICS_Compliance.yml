@@ -8,7 +8,6 @@
     - docs
 
   tasks:
-
-    - include_role:
-        name: "RHEL7-CIS"
+  - include_role:
+      name: "RHEL7-CIS"
 
