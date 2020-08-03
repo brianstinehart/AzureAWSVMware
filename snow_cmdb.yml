@@ -12,8 +12,8 @@
         password: "{{ snow_password }}"
         instance: "{{ snow_instance }}"
         state: present
-        table: sc_request
+        table: cmdb_ci_linux_server
         number: "{{ snow_request }}"
         data: 
-          work_notes: "{{ snow_note }}"
+          display_name: EA-s1-WebServer
       register: snow_var
