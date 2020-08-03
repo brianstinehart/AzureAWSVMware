@@ -20,4 +20,5 @@
           os_version: 7.5.201808150
           location: australiasoutheast
           mac_address: 00-22-48-D3-EB-F5
+          comments: Provisioned for EA demo
       register: snow_var
