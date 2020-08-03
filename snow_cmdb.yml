@@ -13,7 +13,7 @@
         instance: "{{ snow_instance }}"
         state: present
         table: cmdb_ci_linux_server
-        number: 9be0ebd3db925010af758a1848961953
+        number: e7e0ebd3db925010af758a1848961957
         data: 
           display_name: EA-s1-WebServer
           cost_center: Projects
