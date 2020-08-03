@@ -15,7 +15,7 @@
         table: cmdb_ci_linux_server
         number: e7e0ebd3db925010af758a1848961957
         data: 
-          display_name: EA-s1-WebServer
+          asset_tag: EA-s1-WebServer
           cost_center: Projects
           os_version: 7.5.201808150
           location: australiasoutheast
