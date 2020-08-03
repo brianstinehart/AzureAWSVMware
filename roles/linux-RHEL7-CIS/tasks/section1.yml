@@ -973,15 +973,15 @@
       - patch
       - rule_1.7.2
 
-- name: "NOTSCORED | 1.8 | PATCH | Ensure updates, patches, and additional security software are installed"
-  yum:
-      name: "*"
-      state: latest
-  when:
-      - rhel7cis_rule_1_8|bool
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_1.8
-      - skip_ansible_lint
+# - name: "NOTSCORED | 1.8 | PATCH | Ensure updates, patches, and additional security software are installed"
+#   yum:
+#       name: "*"
+#       state: latest
+#   when:
+#       - rhel7cis_rule_1_8|bool
+#   tags:
+#       - level1
+#       - level2
+#       - patch
+#       - rule_1.8
+#       - skip_ansible_lint
