@@ -13,6 +13,11 @@
         instance: "{{ snow_instance }}"
         state: present
         table: cmdb_ci_linux_server
+        number: 9be0ebd3db925010af758a1848961953
         data: 
           display_name: EA-s1-WebServer
+          cost_center: 
+          os_version: 7.5.201808150
+          location: australiasoutheast
+          mac_address: 00-22-48-D3-EB-F5
       register: snow_var
