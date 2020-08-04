@@ -23,4 +23,5 @@
           short_description: Provisioned for EA demo
           comments: Provisioned for Energy Australia
           change_control: Project Mgmt
+          os: Linux Red Hat
       register: snow_var
