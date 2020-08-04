@@ -1,6 +1,6 @@
 ---
 - name: Snow Notification
-  hosts: localhost
+  hosts: all
   connection: local
   gather_facts: no
   
