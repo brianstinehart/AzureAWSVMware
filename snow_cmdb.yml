@@ -15,9 +15,8 @@
         table: cmdb_ci_linux_server
         lookup_field: comments
         number: "9f10a050-56cd-46f7-8f76-a0ff9ad0e29c"
-        # number: e7e0ebd3db925010af758a1848961957
         data: 
-          asset_tag: EA-s1-WebServer
+          asset_tag: "{{ computer_name }}"
           cost_center: Engineering
           os_version: 7.5.201808150
           location: australiasoutheast
