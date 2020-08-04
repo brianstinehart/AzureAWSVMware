@@ -6,10 +6,10 @@
   
   tasks:
 
-    - name: Show all hosts
-      debug:
-        msg: "{{ item }}"
-      loop: "{{ ansible_play_batch }}"
+    # - name: Show all hosts
+    #   debug:
+    #     msg: "{{ item }}"
+    #   loop: "{{ ansible_play_batch }}"
 
     - name: Update ServiceNow CMDB
       snow_record:
@@ -19,17 +19,19 @@
         state: present
         table: cmdb_ci_linux_server
         lookup_field: comments
-        number: "9f10a050-56cd-46f7-8f76-a0ff9ad0e29c"
+        number: "{{ vmid }}"
         data: 
-          asset_tag: EA-s1-WebServer
+          asset_tag: "{{ computer_name }}"
           cost_center: Engineering
-          os_version: 7.5.201808150
-          location: australiasoutheast
-          mac_address: 00-22-48-D3-EB-F5
+          os_version: "{{ version }}"
+          location: "{{ location }}"
+          mac_address: "{{ mac_address }}"
           short_description: Provisioned for EA demo
-          comments: "9f10a050-56cd-46f7-8f76-a0ff9ad0e29c"
+          comments: "{{ vmid }}"
           change_control: Project Mgmt
           os: Linux Red Hat
           model_id: Iris 5875
           ip_address: "{{ ansible_host }}"
+          company: ACME Australia
+          assigned_to: Brian Stinehart
       register: snow_var
