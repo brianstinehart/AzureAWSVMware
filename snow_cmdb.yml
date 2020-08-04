@@ -6,7 +6,7 @@
   
   tasks:
 
-    - name: Update Service Now CMDB
+    - name: Update ServiceNow CMDB
       snow_record:
         username: "{{ snow_username }}"
         password: "{{ snow_password }}"
@@ -16,9 +16,11 @@
         # number: e7e0ebd3db925010af758a1848961957
         data: 
           asset_tag: EA-s1-WebServer
-          cost_center: Projects
+          cost_center: Engineering
           os_version: 7.5.201808150
           location: australiasoutheast
           mac_address: 00-22-48-D3-EB-F5
-          comments: Provisioned for EA demo
+          short_description: Provisioned for EA demo
+          comments: Provisioned for Energy Australia
+          change_control: Project Mgmt
       register: snow_var
