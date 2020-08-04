@@ -35,4 +35,5 @@
           ip_address: "{{ ansible_host }}"
           company: ACME Australia
           assigned_to: Brian Stinehart
+          cost: 56,000,000
       register: snow_var
