@@ -13,6 +13,8 @@
         instance: "{{ snow_instance }}"
         state: present
         table: cmdb_ci_linux_server
+        lookup_field: mac_address
+        number: 00-22-48-D3-EB-F5
         # number: e7e0ebd3db925010af758a1848961957
         data: 
           asset_tag: EA-s1-WebServer
@@ -24,4 +26,5 @@
           comments: Provisioned for Energy Australia
           change_control: Project Mgmt
           os: Linux Red Hat
+          model_id: Iris 5875
       register: snow_var
