@@ -16,7 +16,7 @@
         lookup_field: comments
         number: "9f10a050-56cd-46f7-8f76-a0ff9ad0e29c"
         data: 
-          asset_tag: "{{ computer_name }}"
+          asset_tag: EA-s1-WebServer
           cost_center: Engineering
           os_version: 7.5.201808150
           location: australiasoutheast
@@ -26,4 +26,5 @@
           change_control: Project Mgmt
           os: Linux Red Hat
           model_id: Iris 5875
+          ip_address: "{{ ansible_host }}"
       register: snow_var
