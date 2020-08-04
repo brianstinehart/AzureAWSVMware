@@ -13,8 +13,8 @@
         instance: "{{ snow_instance }}"
         state: present
         table: cmdb_ci_linux_server
-        lookup_field: mac_address
-        number: 00-22-48-D3-EB-F5
+        lookup_field: os_version
+        number: 7.5.201808150
         # number: e7e0ebd3db925010af758a1848961957
         data: 
           asset_tag: EA-s1-WebServer
