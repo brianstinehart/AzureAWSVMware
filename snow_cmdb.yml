@@ -6,6 +6,11 @@
   
   tasks:
 
+    - name: Show all hosts
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ ansible_play_batch }}"
+
     - name: Update ServiceNow CMDB
       snow_record:
         username: "{{ snow_username }}"
