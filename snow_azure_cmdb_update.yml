@@ -22,6 +22,7 @@
         number: "{{ vmid }}"
         data: 
           asset_tag: "{{ computer_name }}"
+          name: "{{ computer_name }}"
           cost_center: Engineering
           os_version: 7.5.201808150
           location: "{{ location }}"
