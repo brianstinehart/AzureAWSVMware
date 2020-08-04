@@ -25,6 +25,6 @@
           short_description: Provisioned for EA demo
           comments: "9f10a050-56cd-46f7-8f76-a0ff9ad0e29c"
           change_control: Project Mgmt
-          os: Linux Fedora
+          os: Linux Red Hat
           model_id: Iris 5875
       register: snow_var
