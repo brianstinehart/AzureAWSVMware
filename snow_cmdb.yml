@@ -13,8 +13,8 @@
         instance: "{{ snow_instance }}"
         state: present
         table: cmdb_ci_linux_server
-        lookup_field: Provisioned for EA demo
-        number: 7.5.201808150
+        lookup_field: short_description
+        number: "Provisioned for EA demo"
         # number: e7e0ebd3db925010af758a1848961957
         data: 
           asset_tag: EA-s1-WebServer
