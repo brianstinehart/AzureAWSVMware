@@ -1,0 +1,35 @@
+---
+- name: Snow Notification
+  hosts: all
+  connection: local
+  gather_facts: no
+  
+  tasks:
+
+    # - name: Show all hosts
+    #   debug:
+    #     msg: "{{ item }}"
+    #   loop: "{{ ansible_play_batch }}"
+
+    - name: Update ServiceNow CMDB
+      snow_record:
+        username: "{{ snow_username }}"
+        password: "{{ snow_password }}"
+        instance: "{{ snow_instance }}"
+        state: present
+        table: cmdb_ci_linux_server
+        data: 
+          asset_tag: "{{ computer_name }}"
+          cost_center: Engineering
+          os_version: 7.5.201808150
+          location: "{{ location }}"
+          mac_address: "{{ mac_address }}"
+          short_description: Provisioned for EA demo
+          comments: "{{ vmid }}"
+          change_control: Project Mgmt
+          os: Linux Red Hat
+          model_id: Iris 5875
+          ip_address: "{{ ansible_host }}"
+          company: ACME Australia
+          assigned_to: Brian Stinehart
+      register: snow_var
