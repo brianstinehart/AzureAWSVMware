@@ -1,5 +1,5 @@
 ---
-- name: Snow Notification
+- name: ServiceNow Notification
   hosts: all
   connection: local
   gather_facts: no

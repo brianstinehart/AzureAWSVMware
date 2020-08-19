@@ -1,12 +1,12 @@
 ---
-- name: Sbnow Notification
+- name: ServiceNow Notification
   hosts: localhost
   connection: local
   gather_facts: no
   
   tasks:
 
-    - name: Update Service Now Ticket to indicate start
+    - name: Update ServiceNow ticket to indicate start
       snow_record:
         username: "{{ snow_username }}"
         password: "{{ snow_password }}"
