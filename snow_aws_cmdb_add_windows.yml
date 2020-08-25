@@ -17,14 +17,13 @@
         password: "{{ snow_password }}"
         instance: "{{ snow_instance }}"
         state: present
-        table: cmdb_ci_linux_server
+        table: cmdb_ci_win_server
         data: 
           asset_tag: "{{ ec2_tag_Name }}"
           name: "{{ ec2_tag_Name }}"
           cost_center: Engineering
           os_version: 7.5.201808150
           location: "{{ ec2_placement }}"
-          mac_address: "{{ mac_address }}"
           short_description: Provisioned for EA demo
           comments: "{{ ec2_id }}"
           change_control: Project Mgmt
