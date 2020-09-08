@@ -198,8 +198,8 @@ azure_windc_instance_type: "Standard_B1s"
 azure_windows_workstation_instance_type: "Standard_A2_v2"
 azure_windows_instance_type: "Standard_B1s"   # Medium = 2 vCPU / 4GB
 
-azure_rhel_publisher: "OpenLogic"
-azure_rhel_offer: "CentOS"
+azure_rhel_publisher: "RedHat"
+azure_rhel_offer: "RHEL"
 azure_rhel_sku: "7.5"
 azure_rhel_version: "latest"
 
