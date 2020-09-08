@@ -2,6 +2,7 @@
 - name: Set up Apache Web Server
   hosts: EA-s1-WebServer
   become: true
+  gather_facts: false
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
   
