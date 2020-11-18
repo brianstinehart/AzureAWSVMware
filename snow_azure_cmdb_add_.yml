@@ -25,12 +25,12 @@
           os_version: 7.5.201808150
           location: "{{ location }}"
           mac_address: "{{ mac_address }}"
-          short_description: Provisioned for EA demo
+          short_description: Provisioned for BHP demo
           comments: "{{ vmid }}"
           change_control: Project Mgmt
           os: Linux Red Hat
           model_id: Iris 5875
           ip_address: "{{ ansible_host }}"
-          company: ACME Australia
-          assigned_to: Brian Stinehart
+          company: BHP
+          assigned_to: Dane Nattrass
       register: snow_var
