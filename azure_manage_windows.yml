@@ -1,6 +1,6 @@
 ---
 - name: Configure Windows Servers
-  hosts: skylight-s1-w1
+  hosts: EA-s1-WebServer
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]

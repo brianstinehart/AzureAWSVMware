@@ -1,0 +1,13 @@
+---
+- name: Provision New Windows Instances
+  hosts: EA-s1-WebServer
+  gather_facts: true
+  vars_files:
+    - [ 'vars/custom.yml', 'vars/main.yml' ]
+  tags:
+    - docs
+
+  tasks:
+  - include_role:
+      name: "linux-RHEL7-CIS-short"
+

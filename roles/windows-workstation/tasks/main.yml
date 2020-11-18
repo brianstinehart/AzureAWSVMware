@@ -61,13 +61,13 @@
   - name: Create Readme file
     win_copy:
       dest: C:\Users\{{ user }}\Documents\Interactive\README.md
-      content: "Thanks to the EA team"
+      content: "Cheers to the BHP team"
     register: initialize
 
   - name: Update hosts file
     win_lineinfile:
       path: C:\Windows\System32\Drivers\etc\hosts
-      line: 8.8.8.8         interactive.microsoft.com   "#Azure DNS"
+      line: 8.8.8.8         bhp.microsoft.com   "#Azure DNS"
 
   - name: Change power plan to high performance
     win_power_plan:
@@ -157,9 +157,9 @@
       groups:
         - Administrators
 
-  - name: Create user account and add to Admin group
+  - name: Create user account and add to Administrators group
     win_user:
-      name: EAadmin
+      name: BHPadmin
       password: Ans1bl3--
       state: present
       groups:
