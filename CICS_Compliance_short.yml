@@ -1,5 +1,5 @@
 ---
-- name: Provision New Windows Instances
+- name: Security Harden Linux Instances
   hosts: EA-s1-WebServer
   gather_facts: true
   vars_files:
