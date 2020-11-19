@@ -1,0 +1,15 @@
+---
+- name: Update Windows Servers - Critical Updates
+  hosts: all
+  gather_facts: True
+  vars_files:
+    - [ 'vars/custom.yml', 'vars/main.yml' ]
+  tags:
+    - windows_hosts
+  tasks:
+
+    - name: Windows Update
+      win_updates:
+        reboot: true
+        category_names:
+          - CriticalUpdates
