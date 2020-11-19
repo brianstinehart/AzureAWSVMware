@@ -1,6 +1,6 @@
 ---
 - name: Configure Windows Servers
-  hosts: EA-s1-Database
+  hosts: EA-s1-database
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
