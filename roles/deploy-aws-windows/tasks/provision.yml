@@ -293,5 +293,3 @@
     data:
       ec2windows_password: {{ ec2windows_password }}
     per_host: yes
-    with_items:
-        - "{{ windows1_jobs.results }}"
