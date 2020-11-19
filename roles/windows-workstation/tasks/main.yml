@@ -8,13 +8,13 @@
       name: chocolatey
       state: present
 
-  - name: Install Telnet and Putty
+  - name: Install Putty
     win_chocolatey:
       name: "{{ item }}"
       ignore_checksums: true
     with_items:
       - putty
-      - telnet
+      # - telnet
       # - googlechrome
     register: chocolatey_packages_install
     until: chocolatey_packages_install is success
