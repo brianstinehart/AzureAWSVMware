@@ -148,14 +148,14 @@
       data: 1
       type: dword
 
-  - name: Disable Administrator account
-    win_user:
-      name: Administrator
-      password: Ans1bl3--
-      state: present
-      account_disabled: yes
-      groups:
-        - Administrators
+  # - name: Disable Administrator account
+  #   win_user:
+  #     name: Administrator
+  #     password: Ans1bl3--
+  #     state: present
+  #     account_disabled: yes
+  #     groups:
+  #       - Administrators
 
   - name: Create user account and add to Administrators group
     win_user:
