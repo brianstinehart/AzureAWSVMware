@@ -20,6 +20,8 @@
           
           Number of Servers: {{ user_count }}
           
+          Standard Configuration Applied
+          
           MySQL Successfully Installed"
         
     # - name: Show webserver details
