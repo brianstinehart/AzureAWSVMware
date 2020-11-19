@@ -286,3 +286,12 @@
 #       vpc-id: "{{ec2_vpc_id}}"
 #   register: eni_facts_1
 
+################### Set Stats ###################
+
+- name: Set password fact for subsequent job templates
+  set_stats:
+    data:
+      ec2windows_password: {{ ec2windows_password }}
+    per_host: yes
+    with_items:
+        - "{{ windows1_jobs.results }}"
