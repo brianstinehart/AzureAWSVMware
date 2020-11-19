@@ -6,12 +6,5 @@
     - [ 'vars/custom.yml', 'vars/main.yml' ]
   tags:
     - windows_hosts
-  tasks:
-    - name: Get the Administrator password
-      community.aws.ec2_win_password:
-        instance_id: "{{ ec2_id }}"
-        region: ap-southeast-2
-        key_file: "/var/lib/awx/projects/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
-        register: windows_password
-    - include_role:
-        name: windows-workstation
+  roles:
+    - windows-workstation
