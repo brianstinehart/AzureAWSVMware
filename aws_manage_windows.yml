@@ -15,3 +15,5 @@
         register: windows_password
     - include_role:
         name: windows-workstation
+  vars:
+    ansible_password: '{{ windows_password }}'
