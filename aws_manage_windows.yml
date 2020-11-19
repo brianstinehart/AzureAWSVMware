@@ -1,7 +1,7 @@
 ---
 - name: Configure Windows Servers
   hosts: all
-  gather_facts: True
+  gather_facts: False
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
   tags:
