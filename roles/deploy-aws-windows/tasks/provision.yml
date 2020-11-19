@@ -291,5 +291,6 @@
 - name: Set password fact for subsequent job templates
   set_stats:
     data:
-      ec2windows_password: "{{ ec2windows_password }}"
-    # per_host: yes
+      ansible_password: "{{ item.win_password }}"
+    per_host: yes
+    with_items: "{{ ec2windows_password.results }}"
