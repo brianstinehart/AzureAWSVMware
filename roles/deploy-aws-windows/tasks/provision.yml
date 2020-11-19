@@ -291,5 +291,5 @@
 - name: Set password fact for subsequent job templates
   set_stats:
     data:
-      ec2windows_password: {{ ec2windows_password }}
+      ec2windows_password: "{{ ec2windows_password }}""
     per_host: yes
