@@ -155,6 +155,7 @@
       Students: "{{ user_count }}"
       short_name: "{{ 's' + item + '-database' }}"
       long_name: "{{ 's' + item + '-database' }}.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
+      os_type: windows
     image: "{{ ec2_ami_ids[ec2_windows_instance_ami_type] }}"
     wait: true
     region: "{{ ec2_region }}"
