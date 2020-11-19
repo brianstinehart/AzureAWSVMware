@@ -1,6 +1,9 @@
 ---
 - name: Configure Windows Servers
   hosts: all
+  ansible_port: 5986
+  ansible_connection: winrm
+  ansible_winrm_server_cert_validation: ignore
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
