@@ -292,5 +292,5 @@
   set_stats:
     data:
       ansible_password: "{{ item.win_password }}"
-    per_host: yes
+    # per_host: yes
   with_items: "{{ ec2windows_password.results }}"
