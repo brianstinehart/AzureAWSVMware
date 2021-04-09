@@ -10,9 +10,9 @@
     msg: "The serial number is:{{ ansible_net_serialnum }}"
 
 - name: Configure VLAN ID
-      ios_config:
-        lines:
-          - vlan {{ vlan_id }}
+  ios_config:
+    lines:
+      - vlan {{ vlan_id }}
 
 - name: Configure VLAN Name
   ios_config:
