@@ -1,0 +1,29 @@
+- name: gather router facts
+  ios_facts:
+
+- name: display version
+  debug:
+    msg: "The IOS version is: {{ ansible_net_version }}"
+
+- name: display serial number
+  debug:
+    msg: "The serial number is:{{ ansible_net_serialnum }}"
+
+- name: Configure VLAN ID
+      ios_config:
+        lines:
+          - vlan {{ vlan_id }}
+
+- name: Configure VLAN Name
+  ios_config:
+    lines:
+      - name {{ vlan_name }}
+    parents: vlan {{ vlan_id }}
+
+- name: Show VLAN
+  ios_command:
+    commands: show vlan brief
+  register: show_vlan
+
+- debug: var=show_vlan.stdout_lines
+

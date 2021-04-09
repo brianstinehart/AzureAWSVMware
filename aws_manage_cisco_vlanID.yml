@@ -1,0 +1,13 @@
+---
+- name: Configure Cisco Devices
+  hosts: all
+  gather_facts: True
+  vars:
+    vlan_id: 998
+    vlan_name: Ansible_VLAN
+  vars_files:
+    - [ 'vars/cisco.yml', 'vars/main.yml' ]
+  tags:
+    - manage-instances
+  roles:
+    - manage-cisco-vlanID
