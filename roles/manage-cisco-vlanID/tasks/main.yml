@@ -20,10 +20,10 @@
 #       - name {{ vlan_name }}
 #     parents: vlan {{ vlan_id }}
 
-# - name: Show VLAN
-#   ios_command:
-#     commands: show vlan brief
-#   register: show_vlan
+- name: Show VLAN
+  ios_command:
+    commands: show vlan brief
+  register: show_vlan
 
 - debug: var=show_vlan.stdout_lines
 
