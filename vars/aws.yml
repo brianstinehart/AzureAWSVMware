@@ -5,7 +5,7 @@
 
 # Where to provision instances (ec2, azure, vmware)
 instance_loc: aws
-name_prefix: "EA"
+name_prefix: "Hancock"
 
 # Needed for AD and windows client provision
 dns_domain_name: "ansibleworkshop.com"
@@ -114,7 +114,7 @@ ec2_gitlab_instance_ami_type: rhel7 # See the ec2_image_names variable for looku
 ec2_docs_instance_type: "t2.medium"
 ec2_docs_instance_ami_type: rhel7 # See the ec2_image_names variable for lookup
 ec2_windc_instance_type: "t3.medium"    # t2.micro fails
-ec2_windc_instance_ami_type: win2019_core # See the ec2_image_names variable for lookup
+ec2_windc_instance_ami_type: win2019_full # See the ec2_image_names variable for lookup
 ec2_windows_workstation_instance_type: "t3.medium"   # t2.small was slowwwwww...
 # There seems to be an issue using win_chocolatey and win2019_full. See https://github.com/ansible/ansible/issues/47821
 ec2_windows_workstation_instance_ami_type: win2019_full # See the ec2_image_names variable for lookup

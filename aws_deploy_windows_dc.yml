@@ -27,3 +27,13 @@
     # - name: Show webserver details
     #   debug: 
     #     msg: "The Server is available at http://{{ ansible_host }}"
+
+- name: Configure Active Directory Domain Controller
+  hosts: windows_domain_controllers
+  gather_facts: True
+  vars_files:
+    - [ 'vars/aws.yml', 'vars/main.yml' ]
+  tags:
+    - windows-ad-controller
+  roles:
+    - manage-windows-dc
