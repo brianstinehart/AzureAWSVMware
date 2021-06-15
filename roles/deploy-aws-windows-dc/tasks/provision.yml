@@ -1,0 +1,284 @@
+---
+
+- include_tasks: aws_check_setup.yml
+
+- include_tasks: find_ami_ids.yml
+
+- name: ensure workshop folder {{ name_prefix }} exists
+  file:
+    path: "/var/lib/awx/projects/workshops/{{ name_prefix }}"
+    state: directory
+
+################### Create Resources ###################
+- name: Create AWS VPC {{ name_prefix }}-vpc
+  ec2_vpc_net:
+    name: "{{ name_prefix }}-vpc"
+    cidr_block: "{{ ptr_zone_cidr }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+      Students: "{{ user_count }}"
+  register: create_vpc
+  until: create_vpc is not failed
+  retries: 5
+
+- name: Set VPC ID
+  set_fact:
+    ec2_vpc_id: "{{ create_vpc.vpc.id }}"
+
+- name: Create subnet for {{ name_prefix }}-vpc
+  ec2_vpc_subnet:
+    region: "{{ ec2_region }}"
+    az: "{{ ec2_az }}"
+    vpc_id: "{{ ec2_vpc_id }}"
+    cidr: "{{ ptr_zone_cidr }}"
+    wait_timeout: 600
+    resource_tags:
+      Name: "{{ name_prefix }}-subnet"
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+      Students: "{{ user_count }}"
+  register: create_subnet
+  until: create_subnet is not failed
+  retries: 15
+
+- name: Set Subnet ID
+  set_fact:
+    ec2_vpc_subnet_id: "{{ create_subnet.subnet.id }}"
+
+- name: Create Internet Gateway
+  ec2_vpc_igw:
+    vpc_id: "{{ ec2_vpc_id }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Name: "{{ name_prefix }}-igw"
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+    state: present
+  register: igw
+  until: igw is not failed
+  retries: 15
+
+- name: vpc public subnet route table is present for {{ ec2_vpc_id }}
+  ec2_vpc_route_table:
+    region: "{{ ec2_region }}"
+    vpc_id: "{{ ec2_vpc_id }}"
+    subnets:
+      - "{{ ec2_vpc_subnet_id }}"
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id }}"
+    tags:
+      Name: "{{ name_prefix }}-route"
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+      Students: "{{ user_count }}"
+  register: routetable
+  until: routetable is not failed
+  retries: 5
+
+- name: Create ssh key pair {{ name_prefix }}
+  ec2_key:
+    name: "{{ skylight_user }}-{{ name_prefix }}-key"
+    region: "{{ ec2_region }}"
+  register: create_key
+
+- name: Save the private key
+  copy:
+    content: "{{ create_key.key.private_key }}"
+    dest: "/var/lib/awx/projects/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
+    mode: '0400'
+  when: create_key.changed
+
+################### Create Security Groups ###################
+
+- name: DomainController | Create MS AD Domain Controller security group
+  ec2_group:
+    name: "{{ name_prefix }}-windcsg"
+    description: "Microsoft AD Domain Controller SG"
+    vpc_id: "{{ ec2_vpc_id }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+      Students: "{{ user_count }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: "0.0.0.0/0"
+      - proto: tcp
+        from_port: 5986
+        to_port: 5986
+        cidr_ip: "0.0.0.0/0"
+      - proto: tcp
+        from_port: 3389
+        to_port: 3389
+        cidr_ip: "0.0.0.0/0"
+      - proto: all
+        cidr_ip: "{{ ptr_zone_cidr }}"
+
+################### Build Instances ###################
+
+- name: DomainController | Launch instance
+  ec2:
+    key_name: "{{ skylight_user }}-{{ name_prefix }}-key"
+    group:
+      - "{{ name_prefix }}-windcsg"
+    instance_type: "{{ ec2_windc_instance_type }}"
+    exact_count: 1
+    count_tag:
+      Name: "{{ name_prefix }}-windc"
+      App: AnsibleWorkshop
+    instance_tags:
+      Name: "{{ name_prefix }}-windc"
+      App: AnsibleWorkshop
+      Workshop: "{{ name_prefix }}"
+      Username: "{{ skylight_user }}"
+      Info: "Username that provisioned this-> {{ skylight_user }}"
+      Skylight: "This was provisioned through the skylight provisioner"
+      Students: "{{ user_count }}"
+      short_name: "{{ 's' + item + '-windc' }}"
+      long_name: "{{ 's' + item + '-windc' }}.{{ name_prefix }}.{{ public_dns_zone | default('') }}"
+      os_type: windows
+    image: "{{ ec2_ami_ids[ec2_windc_instance_ami_type] }}"
+    wait: true
+    region: "{{ ec2_region }}"
+    vpc_subnet_id: "{{ ec2_vpc_subnet_id }}"
+    user_data: "{{ lookup('template', 'win_ec2_user_data.j2', template_vars=dict(vm_name='windc')) }}"
+    assign_public_ip: yes
+  with_sequence: count=1
+  register: dc_jobs
+  async: 7200
+  poll: 0
+
+################### Wait for Jobs ###################
+
+- name: Wait for DC instance creation to complete
+  async_status: jid="{{ item.ansible_job_id }}"
+  register: dc_instances
+  until: dc_instances.finished
+  retries: 300
+  with_items: "{{ dc_jobs.results }}"
+
+
+################### Get Passwords ###################
+
+- name: DomainController | Obtain windows passwords for instances
+  ec2_win_password:
+    region: '{{ ec2_region }}'
+    instance_id: "{{ item.id }}"
+    key_file: "{{ playbook_dir }}/workshops/{{ name_prefix }}/{{ skylight_user }}-{{ name_prefix }}-private.pem"
+    wait: yes
+    wait_timeout: 300
+  with_items: "{{ dc_instances.results | map(attribute='tagged_instances') | list }}"
+  register: ec2dc_password
+  when: dc_instances is defined
+
+################### Add Hosts ###################
+
+- name: DomainController | Add new instance to host group
+  add_host:
+    hostname: "windc"
+    ansible_host: "{{ item.item.public_ip }}"
+    ansible_port: "{{ '22' if (windows_ansible_connection is defined and windows_ansible_connection == 'ssh') else '5986' }}"
+    ansible_user: "Administrator"
+    ansible_password: "{{ item.win_password }}"
+    ansible_connection: "{{ windows_ansible_connection | default('winrm') }}"
+    ansible_shell_type: "cmd"
+    private_ip: "{{ item.item.private_ip }}"
+    ansible_winrm_transport: "ntlm"
+    ansible_winrm_server_cert_validation: "ignore"
+    ansible_winrm_operation_timeout_sec: 120
+    ansible_winrm_read_timeout_sec: 150
+    groups: windows_domain_controllers
+  with_items: "{{ ec2dc_password.results }}"
+  when: ec2dc_password is defined
+
+# Add new dns entries to make the url pretty
+# - block:
+
+#   - name: "Cisco | Create DNS entry for {{ name_prefix }}.{{ public_dns_zone }}"
+#     route53:
+#       state: present
+#       zone: "{{ public_dns_zone }}"
+#       record: "{{ name_prefix }}.{{ public_dns_zone }}"
+#       type: A
+#       ttl: 600
+#       value: "{{ item.public_ip }}"
+#       wait: yes
+#     with_items: "{{ cisco_instances.results | map(attribute='tagged_instances') | list }}"
+
+#  - name: "Docs | Create DNS entry for docs.{{ item.tags.long_name }}"
+#    route53:
+#      state: present
+#      zone: "{{ public_dns_zone }}"
+#      record: "{{ item.tags.long_name }}"
+#      type: A
+#      ttl: 600
+#      value: "{{ item.public_ip }}"
+#      wait: yes
+#    with_items: "{{ docs_instances.results | map(attribute='tagged_instances') | list }}"
+#
+#  - name: "GitLab | Create DNS entry for gitlab.{{ name_prefix }}.{{ public_dns_zone }}"
+#    route53:
+#      state: present
+#      zone: "{{ public_dns_zone }}"
+#      record: "{{ item.tags.long_name }}"
+#      type: A
+#      ttl: 600
+#      value: "{{ item.public_ip }}"
+#      wait: yes
+#    with_items: "{{ gitlab_instances.results | map(attribute='tagged_instances') | list }}"
+#
+#  - name: "Workstation | Create DNS entries for student workstations"
+#    route53:
+#      state: present
+#      zone: "{{ public_dns_zone }}"
+#      record: "{{ item.tags.long_name }}"
+#      type: A
+#      ttl: 600
+#      value: "{{ item.public_ip }}"
+#      wait: yes
+#    with_items: "{{ workstation_instances.results | map(attribute='tagged_instances') | list }}"
+
+  # when: public_dns_zone is defined
+
+
+################### Wait for Instances ################### 
+
+- name: DomainController | Wait for {{ windows_ansible_connection | default('winrm') }} to come up
+  wait_for_connection:
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups['windows_domain_controllers'] }}"
+
+# - name: Cisco | Wait for SSH to come up
+#   wait_for_connection:
+#   delegate_to: "{{ item }}"
+#   with_items: "{{ groups['cisco'] }}"  
+
+# - name: Configure external tower if needed
+#   include: external_tower.yml
+#   when: skylight_external_tower
+
+# - name: grab all network interfaces for VPC 1 (NETWORKING MODE)
+#   ec2_eni_facts:
+#     region: "{{ ec2_region }}"
+#     filters:
+#       vpc-id: "{{ec2_vpc_id}}"
+#   register: eni_facts_1
+
+################### Set Stats ###################
+
+- name: Set password fact for subsequent job templates
+  set_stats:
+    data:
+      ec2windows_password: "{{ item.win_password }}"
+    # per_host: yes
+  with_items: "{{ ec2windows_password.results }}"

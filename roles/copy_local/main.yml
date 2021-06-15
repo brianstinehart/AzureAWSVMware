@@ -1,0 +1,6 @@
+- name: Save the private key to local machine
+  copy:
+    content: "{{ create_key.key.private_key }}"
+    dest: "/Users/bstineha/Downloads/Ansible/Repos/interactive/{{ skylight_user }}-{{ name_prefix }}-private.pem"
+    mode: '0400'
+  when: create_key.changed

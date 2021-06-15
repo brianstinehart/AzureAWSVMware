@@ -1,0 +1,29 @@
+---
+- name: Provision Instances
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - [ 'vars/aws.yml', 'vars/main.yml' ]
+  tags:
+    - manage-instances
+  vars:
+    teardown: false
+  tasks:
+    - include_role:
+        name: deploy-aws-windows-dc
+
+    #invoking from a workflow, then add a message for ServiceNow
+    - name: set stats
+      set_stats:
+        data:
+          snow_note: "{{ instance_loc |upper }} - Windows Domain Controller Deployment Completed 
+          
+          Number of Servers: {{ user_count }}
+          
+          Standard Configuration Applied
+          
+          Successfully Installed"
+        
+    # - name: Show webserver details
+    #   debug: 
+    #     msg: "The Server is available at http://{{ ansible_host }}"
