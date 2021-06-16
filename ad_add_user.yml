@@ -10,6 +10,7 @@
 
     - name: Add windows domain user
       win_domain_user:
+        name: Brian
         upn: "Admin@{{ dns_domain_name }}"
         state: present
         enabled: yes
@@ -23,3 +24,4 @@
         surname: user
         company: Hancock Prospecting
         email: "Admin@{{ dns_domain_name }}"
+        path: ou=Hancock Prospecting,dc=domain,dc=local
