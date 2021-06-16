@@ -24,4 +24,4 @@
         surname: user
         company: Hancock Prospecting
         email: "Admin@{{ dns_domain_name }}"
-        path: ou=Hancock Prospecting,dc=domain,dc=local
+        # path: ou=Hancock Prospecting,dc=domain,dc=local
