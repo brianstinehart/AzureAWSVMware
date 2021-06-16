@@ -1,7 +1,7 @@
 ---
 - name: Configure Windows Servers
   hosts: all
-  gather_facts: True
+  gather_facts: false
   vars_files:
     - [ 'vars/aws.yml', 'vars/main.yml' ]
   tags:
