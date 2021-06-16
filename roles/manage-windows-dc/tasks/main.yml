@@ -68,35 +68,35 @@
   until: reverse is not failed
   retries: 100
 
-- name: Create DNS A record for gitlab
-  win_ad_dnsrecord:
-    hostname: gitlab
-    zone: "{{ dns_domain_name }}"
-    ipaddr: "{{ hostvars['gitlab']['private_ip'] }}"
-    state: present
+# - name: Create DNS A record for gitlab
+#   win_ad_dnsrecord:
+#     hostname: gitlab
+#     zone: "{{ dns_domain_name }}"
+#     ipaddr: "{{ hostvars['gitlab']['private_ip'] }}"
+#     state: present
 
-- name: Create DNS A record for docs
-  win_ad_dnsrecord:
-    hostname: docs
-    zone: "{{ dns_domain_name }}"
-    ipaddr: "{{ hostvars['docs']['private_ip'] }}"
-    state: present
+# - name: Create DNS A record for docs
+#   win_ad_dnsrecord:
+#     hostname: docs
+#     zone: "{{ dns_domain_name }}"
+#     ipaddr: "{{ hostvars['docs']['private_ip'] }}"
+#     state: present
 
-- name: Create DNS A record for Towers
-  win_ad_dnsrecord:
-    hostname: s{{ item }}-tower
-    zone: "{{ dns_domain_name }}"
-    ipaddr: "{{ hostvars['s' + item + '-tower']['private_ip'] }}"
-    state: present
-  with_sequence: count={{ user_count }}
+# - name: Create DNS A record for Towers
+#   win_ad_dnsrecord:
+#     hostname: s{{ item }}-tower
+#     zone: "{{ dns_domain_name }}"
+#     ipaddr: "{{ hostvars['s' + item + '-tower']['private_ip'] }}"
+#     state: present
+#   with_sequence: count={{ user_count }}
 
-- name: Create DNS A record for Windows
-  win_ad_dnsrecord:
-    hostname: s{{ item }}-win1
-    zone: "{{ dns_domain_name }}"
-    ipaddr: "{{ hostvars['s' + item + '-win1']['private_ip'] }}"
-    state: present
-  with_sequence: count={{ user_count }}
+# - name: Create DNS A record for Windows
+#   win_ad_dnsrecord:
+#     hostname: s{{ item }}-win1
+#     zone: "{{ dns_domain_name }}"
+#     ipaddr: "{{ hostvars['s' + item + '-win1']['private_ip'] }}"
+#     state: present
+#   with_sequence: count={{ user_count }}
 
 - name: Add windows group
   win_domain_group:
