@@ -10,7 +10,7 @@
 
     - name: Add windows domain user
       win_domain_user:
-        name: Brian
+        name: "{{ users_name }}"
         state: present
         enabled: yes
         account_locked: no
@@ -19,8 +19,9 @@
         password: "{{ users_password }}"
         update_password: on_create
         password_expired: false
-        firstname: admin
-        surname: user
+        firstname: "{{ users_firstname }}"
+        surname: "{{ users_surname }}"
+        upn: "{{ users_upn }}"
         company: Hancock Prospecting
-        email: "Admin@{{ dns_domain_name }}"
+        email: "{{ users_upn }}@{{ dns_domain_name }}"
         # path: ou=Hancock Prospecting,dc=domain,dc=local
