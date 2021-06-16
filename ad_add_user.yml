@@ -8,5 +8,18 @@
     - windows-ad-controller
   tasks:
 
-    - include_role:
-        name: ad_add_user_group
+    - name: Add windows domain user
+        win_domain_user:
+          upn: "Admin@{{ dns_domain_name }}"
+          state: present
+          enabled: yes
+          account_locked: no
+          groups:
+            - Domain Admins
+          password: "{{ users_password }}"
+          update_password: on_create
+          password_expired: false
+          firstname: admin
+          surname: user
+          company: Hancock Prospecting
+          email: "Admin@{{ dns_domain_name }}"
