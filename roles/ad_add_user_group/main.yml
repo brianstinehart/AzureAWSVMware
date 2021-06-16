@@ -1,4 +1,4 @@
-- name: Add windows domain admin
+- name: Add windows domain user
   win_domain_user:
     upn: "Admin@{{ dns_domain_name }}"
     state: present
