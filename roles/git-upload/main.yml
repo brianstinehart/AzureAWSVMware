@@ -1,11 +1,11 @@
 ---
 
-- name: Set identity as "ETG Network" in GIT Config 
-  git_config:
-    # name: user.name
-    scope: local
-    repo: "{{ project_path }}"
-    # value: "ETG Network"
+# - name: Set identity as "ETG Network" in GIT Config 
+#   git_config:
+#     # name: user.name
+#     scope: local
+#     repo: "{{ project_path }}"
+#     # value: "ETG Network"
 
 - name: commit changes to git
   shell: |
