@@ -24,4 +24,4 @@
         upn: "{{ users_upn }}"
         company: Hancock Prospecting
         email: "{{ users_upn }}@hancockprospecting.com.au"
-        # path: ou=Hancock Prospecting,dc=domain,dc=local
+        path: ou=Hancock Prospecting,dc=ansibleworkshop,dc=com
