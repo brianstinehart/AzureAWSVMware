@@ -11,7 +11,7 @@
 
 - name: create a new user
   ios_user:
-    name: BHPadmin
+    name: Hancockadmin
     configured_password: ansible
     state: present
 
