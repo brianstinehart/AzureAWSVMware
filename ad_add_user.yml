@@ -26,7 +26,7 @@
         email: "{{ users_upn }}@hancockprospecting.com.au"
         path: ou=Hancock Prospecting,dc=ansibleworkshop,dc=com
         city: West Perth
-        state: Western Australia
+        state_province: Western Australia
         street: 28-42 Ventnor Avenue
         postal_code: 6872
 
