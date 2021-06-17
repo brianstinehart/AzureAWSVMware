@@ -23,5 +23,5 @@
         surname: "{{ users_surname }}"
         upn: "{{ users_upn }}"
         company: Hancock Prospecting
-        email: "{{ users_upn }}@{{ dns_domain_name }}"
+        email: "{{ users_upn }}@hancockprospecting.com.au"
         # path: ou=Hancock Prospecting,dc=domain,dc=local
