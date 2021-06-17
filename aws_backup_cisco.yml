@@ -1,0 +1,30 @@
+---
+
+# Play One:  Create Backups for Routers
+
+- name: Create Network Device Backups 
+  hosts: all
+  connection: network_cli
+  gather_facts: false
+
+  vars:
+    ansible_user: ec2-user
+    backup_role: rtr-backup-new
+    project_path: /var/lib/awx/projects/_156__Brian_Azure_AWS_VMware
+
+  roles:
+    - "{{ backup_role }}"
+
+# Play Two:  Upload backups to git..
+
+- name: Upload Changed Backup Files to GIT
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    project_path: /var/lib/awx/projects/_156__Brian_Azure_AWS_VMware
+    backup_role: rtr_backup_new
+
+  roles:
+    - git_upload
