@@ -1,6 +1,6 @@
 ---
 
-- name: Set identity as "ETG Network" in GIT Config 
+- name: Set identity as "brianstinehart" in GIT Config 
   git_config:
     name: user.name
     scope: local
