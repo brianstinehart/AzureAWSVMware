@@ -1,5 +1,5 @@
 ---
-- name: Configure Windows Servers
+- name: Configure Windows User Accounts
   hosts: all
   gather_facts: false
   vars_files:
