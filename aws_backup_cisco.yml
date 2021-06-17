@@ -10,7 +10,7 @@
   vars:
     ansible_user: ec2-user
     backup_role: rtr-backup-new
-    project_path: /var/lib/awx/projects/_156__Brian_Azure_AWS_VMware
+    project_path: /var/lib/awx/projects/_156__interactive
 
   roles:
     - "{{ backup_role }}"
@@ -23,8 +23,8 @@
   gather_facts: no
 
   vars:
-    project_path: /var/lib/awx/projects/_156__Brian_Azure_AWS_VMware
-    backup_role: rtr_backup_new
+    project_path: /var/lib/awx/projects/_156__interactive
+    backup_role: rtr-backup-new
 
   roles:
-    - git_upload
+    - git-upload
