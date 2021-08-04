@@ -183,8 +183,8 @@ ovirt_windows_template: "{{ ovirt_clone_source_windows }}"
 azure_admin_user: "brian.stinehart22@gmail.com"
 azure_admin_pass: "IlovetheBuckeyes22!"
 
-azure_client_id: 'b24cee71-4beb-4709-b5ef-d8e1b8a7b0c9'
-azure_secret: '8a583fe7-8692-4019-a9f9-47ea00e2a332'
+azure_client_id: 'ce6db292-6bc2-408e-a4e9-ea3ef85c1eef'
+azure_secret: '4a98b8e7-5acb-4406-9544-b75d9738f3ee'
 azure_subscription_id: 'c12a14d4-eb57-4d79-8322-b0e933053cd6'
 azure_tenant: '41101d19-61a7-4971-a3ce-6a1a5f5dd8e8'
 azure_location: 'australiasoutheast'
