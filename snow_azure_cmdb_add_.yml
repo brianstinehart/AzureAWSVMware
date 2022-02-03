@@ -31,6 +31,6 @@
           os: Linux Red Hat
           model_id: Iris 5875
           ip_address: "{{ ansible_host }}"
-          company: BHP
+          company: Australian Unity
           assigned_to: Dane Nattrass
       register: snow_var
