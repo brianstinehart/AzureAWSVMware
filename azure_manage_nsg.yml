@@ -1,6 +1,6 @@
 ---
-- name: Configure WebServer
-  hosts: SAPN-s1-WebServer
+- name: Configure Network Security Group
+  hosts: all
   become: True
   gather_facts: True
   vars_files:
@@ -8,4 +8,4 @@
   tags:
     - docs
   roles:
-    - linux-common
+    - manage-azure-nsg
