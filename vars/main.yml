@@ -5,7 +5,7 @@
 
 # Where to provision instances (ec2, azure, vmware)
 instance_loc: ec2
-name_prefix: "EA"
+name_prefix: "SAPN"
 
 # Needed for AD and windows client provision
 dns_domain_name: "ansibleworkshop.com"
