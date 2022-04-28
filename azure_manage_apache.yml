@@ -1,6 +1,6 @@
 ---
 - name: Set up Apache Web Server
-  hosts: EA-s1-WebServer
+  hosts: SAPN-s1-WebServer
   become: true
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
