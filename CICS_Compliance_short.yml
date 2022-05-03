@@ -1,6 +1,6 @@
 ---
 - name: Security Harden Linux Instances
-  hosts: EA-s1-WebServer
+  hosts: all
   gather_facts: true
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]

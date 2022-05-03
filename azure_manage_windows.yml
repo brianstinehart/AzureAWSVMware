@@ -1,6 +1,6 @@
 ---
 - name: Configure Windows Servers
-  hosts: SAPN-s1-WebServer
+  hosts: all
   gather_facts: True
   vars_files:
     - [ 'vars/custom.yml', 'vars/main.yml' ]
