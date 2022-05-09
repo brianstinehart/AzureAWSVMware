@@ -296,6 +296,6 @@
   with_items: "{{ ec2windows_password.results }}"
 
 - name: Print password
-  ansible.builtin.debug:
+  debug:
     msg:
     - "This server has the password of '{{ ec2windows_password }}'. Please retain this for later use."
