@@ -1,0 +1,12 @@
+---
+- name: Configure Windows Servers
+  hosts: all
+  gather_facts: True
+  vars_files:
+    - [ 'vars/custom.yml', 'vars/main.yml' ]
+  tags:
+    - windows_hosts
+  tasks:
+
+    - include_role:
+        name: windows-workstation-services
