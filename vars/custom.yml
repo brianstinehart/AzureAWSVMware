@@ -11,6 +11,7 @@ name_prefix: "Lacework"
 dns_domain_name: "ansibleworkshop.com"
 dns_domain_name_short: "ansibleworkshop"
 ldap_basedn: "DC=ansibleworkshop,DC=com"
+ec2windows_password: "FsA@Pcs8z-(vo$m5l3UW)uLJK@LJE4Ej"
 domain_admin_password: "MyP@ssw0rd21"
 
 # Number of users and prefix for user name
