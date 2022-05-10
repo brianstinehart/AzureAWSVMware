@@ -16,9 +16,9 @@
     name: W3SVC
   register: iis_service_info
 
-- name: Show IIS service dependenciess
+- name: Show IIS service dependencies
   debug: 
-    var: iis_service_info
+    var: iis_service_info|json_query('[*].dependencies')
 
 # - name: Restart a IIS service
 #   win_service:
