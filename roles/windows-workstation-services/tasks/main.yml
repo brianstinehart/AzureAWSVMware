@@ -33,4 +33,4 @@
 
 - name: Confirm that 200 OK response is returned
   uri:
-    url: "http://3.25.84.236"
+    url: "http://ec2-3-25-84-236.ap-southeast-2.compute.amazonaws.com"
