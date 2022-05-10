@@ -18,7 +18,7 @@
 
 - name: Show IIS service dependencies
   debug: 
-    var: iis_service_info|json_query('[*].dependencies')
+    var: iis_service_info|map(attribute='dependencies')|list
 
 # - name: Restart a IIS service
 #   win_service:
