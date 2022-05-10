@@ -3,7 +3,7 @@
     user: bstineha
 
 - name: Get info for a single service
-  win_service_info:
+  ansible.windows.win_service_info:
     name: W3SVC
   register: service_info
 
