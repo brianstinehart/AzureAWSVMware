@@ -2,13 +2,13 @@
 - set_fact:
     user: bstineha
 
-# - name: Get info for a single service
-#   ansible.windows.win_service_info:
-#     name: W3SVC
-#   register: service_info
+- name: Get info for a single service
+  ansible.windows.win_service_info:
+    name: W3SVC
+  register: service_info
 
-# - name: Show webserver details
-#   debug: 
-#     msg: "{{ ansible_host }}"
+- name: Show webserver details
+  debug: 
+    msg: "{{ ansible_host }}"
 
 
