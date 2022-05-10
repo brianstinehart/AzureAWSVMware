@@ -18,7 +18,7 @@
 
 - name: Show IIS service dependenciess
   debug: 
-    msg: "{{ dependencies }}"
+    var: iis_service_info
 
 # - name: Restart a IIS service
 #   win_service:
