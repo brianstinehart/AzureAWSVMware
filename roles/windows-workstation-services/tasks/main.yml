@@ -33,5 +33,5 @@
 
 - name: Confirm that 200 OK response is returned
   uri:
-    url: "http://3.25.84.236:80"
+    url: "3.25.84.236"
     status_code: 200
