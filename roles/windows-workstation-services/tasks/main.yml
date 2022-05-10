@@ -14,10 +14,12 @@
 - name: IIS service info
   win_service:
     name: W3SVC
-
-- name: Show webserver details
   debug: 
     msg: "{{ dependencies }}"
+
+# - name: Show webserver details
+#   debug: 
+#     msg: "{{ dependencies }}"
 
 # - name: Restart a IIS service
 #   win_service:
