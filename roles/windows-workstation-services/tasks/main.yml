@@ -16,11 +16,12 @@
     name: W3SVC
   register: iis_service_info
 
-- name: Show IIS service dependencies
-  debug: 
-    var: iis_service_info|map(attribute='dependencies')|list
+- name: Restart depedent services
+  win_service:
+    name: WAS
+    state: restarted
 
-# - name: Restart a IIS service
-#   win_service:
-#     name: W3SVC
-#     state: restarted
+- name: Restart a IIS service
+  win_service:
+    name: W3SVC
+    state: restarted
