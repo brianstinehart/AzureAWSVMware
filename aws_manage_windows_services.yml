@@ -6,6 +6,8 @@
     - [ 'vars/custom.yml', 'vars/main.yml' ]
   tags:
     - windows_hosts
+  collections:
+    - ansible.windows
   tasks:
 
     - include_role:
