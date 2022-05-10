@@ -31,7 +31,7 @@
     name: W3SVC
     state: restarted
 
-# - name: Confirm that 200 OK response is returned
-#   uri:
-#     url: "3.25.84.236"
-#     status_code: 200
+- name: Confirm that 200 OK response is returned
+  uri:
+    url: "3.25.84.236"
+    status_code: 200
