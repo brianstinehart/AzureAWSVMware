@@ -16,6 +16,11 @@
     name: W3SVC
   register: iis_service_info
 
+- name: Stop IIS service
+  win_service:
+    name: W3SVC
+    state: stopped
+
 - name: Restart depedent services
   win_service:
     name: WAS
