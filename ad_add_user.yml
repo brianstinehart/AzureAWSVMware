@@ -22,9 +22,9 @@
         firstname: "{{ users_firstname }}"
         surname: "{{ users_surname }}"
         upn: "{{ users_upn }}"
-        company: Hancock Prospecting
-        email: "{{ users_upn }}@hancockprospecting.com.au"
-        path: ou=Hancock Prospecting,dc=ansibleworkshop,dc=com
+        company: Company
+        email: "{{ users_upn }}@company.com.au"
+        path: ou=Company,dc=ansibleworkshop,dc=com
         city: West Perth
         state_province: Western Australia
         street: 28-42 Ventnor Avenue

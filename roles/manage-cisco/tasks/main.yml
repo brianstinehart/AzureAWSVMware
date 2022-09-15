@@ -11,7 +11,7 @@
 
 - name: create a new user
   ios_user:
-    name: Hancockadmin
+    name: admin
     configured_password: ansible
     state: present
 
@@ -27,4 +27,4 @@
     commands:
       - snmp-server community ansible-public RO
       - snmp-server community ansible-private RW
-      - snmp-server community ansible-Hancock RO
+      - snmp-server community ansible-company RO
